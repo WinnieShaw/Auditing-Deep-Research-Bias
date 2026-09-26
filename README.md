@@ -1,38 +1,55 @@
 # Auditing Deep Research Bias
 
-This repository accompanies our project **“Search Is a Sampling Policy: Causal Correction of Evidence Selection Bias in Deep Research Agents.”**
+This repository contains a small, CPU-only post-processing implementation for
+auditing sequential evidence selection in Deep Research agents.
 
-Deep Research agents do not passively summarize a fixed collection of documents. They decide what to query, which results to open, and when to stop. As a result, the evidence used in a report can be a biased sample of the available evidence—even when every citation is valid and faithfully represented.
+An agent chooses queries, opens documents, and decides when to continue. The
+observed documents can therefore be a selected sample of a larger candidate
+pool. The public code computes transparent estimators from a trajectory whose
+selection and continuation probabilities were logged before the outcome.
 
-We study this problem as **sequential evidence selection** and introduce **CESS**, an estimator that uses logged document-selection and continuation probabilities to estimate the conclusion supported by the full candidate pool. The method combines sequential probability correction with finite-budget stabilization.
-
-## Minimal public code
-
-The repository currently contains a small CPU-only post-processing release:
+## Quick start
 
 ```bash
-python run_analysis.py --input examples/episodes.example.jsonl --output results
+python3 run_analysis.py \
+  --input examples/episodes.example.jsonl \
+  --output results \
+  --bootstrap-replicates 1000
 ```
 
-The input is JSONL. Each episode provides a pool target, an outcome-regression anchor, and the selected outcome, logged selection probability, continuation probability, and outcome prediction for each opened document. The script writes per-episode estimates and a JSON summary with MAE and ranking sensitivity.
+The command writes `estimates.csv` and `summary.json`. A development-set anchor
+can be supplied explicitly with `--global-mean`; it is never inferred from
+test targets by the runner.
 
-This release does not include model weights, private candidate documents, search caches, API credentials, or internal machine paths. The actual search-agent runner and data preparation remain separate from this lightweight audit package.
+## What is implemented
 
-## Evaluation
+`cess_audit.py` provides Opened Mean, outcome regression, two simple shrinkage
+baselines, sequential IPW, self-normalized IPW, sequential DR,
+self-normalized DR, weight-clipped DR, and CESS. CESS follows the documented
+order: compute the raw sequential DR correction, clip it to the outcome scale,
+then shrink it toward the outcome-regression anchor. `bootstrap.py` computes
+task-cluster percentile intervals for task-macro MAE and ranking sensitivity.
 
-Our experiments cover:
+The input contract and formulas are in [`docs/data_schema.md`](docs/data_schema.md).
+Run the standard-library tests with:
 
-- controlled evidence-selection settings on **MS2**;
-- cross-domain and long-horizon evaluation on **PERSPECTRUM**;
-- ranking, overlap, and estimator-robustness analyses;
-- transfer to a public Deep Research agent based on **LangChain Open Deep Research**.
+```bash
+python3 -m unittest discover -s tests -p 'test_*.py'
+```
 
-We evaluate both pool-target accuracy and sensitivity to document ranking, and report comparisons with Opened Mean, outcome regression, sequential IPW/DR, and tuned shrinkage baselines.
+## Scope and reproducibility boundary
 
-## Repository Status
+This is a public audit package, not the private search-agent runner. It does
+not contain model weights, private candidate documents, search caches, API
+credentials, internal machine paths, or unreleased result files. It also does
+not create probabilities for unlogged actions: zero support is rejected and
+must be addressed in the data-collection protocol. The supplied example is an
+engineering smoke test, not a paper result.
 
-The code, experiment configurations, and reproducible result artifacts are being organized for public release. Setup and reproduction commands will be added here with the release.
+The full research evaluation uses authorized task data and separately managed
+agent configurations. Public users can reproduce the estimator and all
+post-processing once they have an equivalent, shareable JSONL export.
 
 ## Citation
 
-Citation information will be added when the paper is publicly available.
+Citation information will be added with the public paper release.
