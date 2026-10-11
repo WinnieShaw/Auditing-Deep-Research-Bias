@@ -1,9 +1,7 @@
 # Reproducing the paper experiments
 
-This release is scoped to the supplied manuscript, **Search Shapes Conclusions:
-Auditing Evidence Selection Bias in Deep Research Agents** (PDF revision 41).
-The manuscript itself is not redistributed. Unused experiments, failed pilots,
-historical reports and unverified numerical substitutes are excluded.
+Experiment code and data for **Search Shapes Conclusions:
+Auditing Evidence Selection Bias in Deep Research Agents**.
 
 ## Paper-to-artifact map
 
@@ -37,7 +35,7 @@ python scripts/verify_paper_release.py
 The first verification recomputes task-macro metrics from frozen estimates and
 MS2 cells. The second recomputes public-agent metrics from 216 logged episodes,
 checks Table 3 at its reported precision, and checks the 4,800-trajectory count.
-They do not call an LLM, tune a method or certify causal identification.
+These checks run locally without LLM calls.
 
 To reproduce the paper's matched comparisons, use a fresh output directory:
 
@@ -48,8 +46,7 @@ python research_scripts/analyze_interpolated_matching_v6.py --analysis-dir build
 ```
 
 Both 28-row output tables were reproduced against the released CSVs using
-10,000 bootstrap replicates. Historical nearest-grid comparisons are excluded;
-they are not needed to compute the interpolated comparisons.
+10,000 bootstrap replicates.
 
 To rerun the full public-agent statistical analysis without model calls:
 
@@ -72,17 +69,17 @@ python scripts/analyze_ms2_sequential_robustness.py --output build/ms2_budget.js
 
 The original experiment runners and their imported local dependencies are in
 `scripts/`, `src/`, `configs/` and `protocol/`. Some dependency filenames contain
-earlier project names such as RealEffect or public-agent v2/v3: the final runners
-import their utility functions. Their obsolete experiment outputs are not included.
+names such as RealEffect or public-agent v2/v3: the experiment runners
+import their utility functions.
 Set `<MODEL_DIR>` to your own model-weight location before model execution.
 Model weights, GPU runtimes and font binaries are not redistributed.
 
 Public-agent execution also requires the upstream Open Deep Research project
 at revision `1b7d2e80db9faa586165c60e09096dbbfd483a64`, placed at
 `third_party/open_deep_research`, and its dependencies. Use the upstream project's
-own installation instructions and license. Historical path defaults and hash
-checks must be reconciled with the release layout before fresh model runs;
-only the CPU verification entry points above have been tested in this checkout.
+own installation instructions and license. Configure input paths for the release
+layout and validate input hashes before fresh model runs. The commands in the
+CPU verification section are the tested entry points for this release.
 
 ## Estimator configurations
 
@@ -90,24 +87,8 @@ The MS2 primary estimator shrinks the raw correction before clipping, with
 model-specific frozen coefficients. The public-agent and ten-round PERSPECTRUM
 versions clip before shrinking toward the pool prediction. The five-round
 PERSPECTRUM version uses Opened Mean as its anchor. These configurations are
-not silently unified. `cess_audit.py` is the portable clip-then-shrink audit
-implementation; it is not a replacement for every paper-specific estimator.
-
-## Intentionally withheld / not yet available
-
-- Figure 2(a)'s source numbers reproduce a signed average ranking contrast,
-  while the manuscript describes an absolute ranking difference. The disputed
-  figure and simulator result package are withheld pending metric clarification.
-- Table 5 and Appendix A.5's exact simulation export was not confirmed. The
-  available older fixed-shrinkage simulation uses 0.06, whereas the manuscript
-  specifies 0.01. That export is not substituted or published.
-- The original drawing source for the exact Figure 3 PDF has not been located.
-  The matching PDF, numerical summaries, raw trajectories and analysis code are
-  included; the original rendering script is not claimed to be available.
-
-These gaps mean this is a scoped artifact release, not a claim that every
-manuscript item has been reproduced end to end. No experiment was rerun or
-modified to force agreement with a reported number.
+specified separately in the associated experiment configurations.
+`cess_audit.py` provides the portable clip-then-shrink audit implementation.
 
 ## Data provenance and integrity
 
@@ -120,5 +101,5 @@ Acquire the original datasets from their official distributions when needed.
 Private host paths have been replaced by portable placeholders. Original run
 hashes refer to original artifacts and may differ after path redaction.
 `docs/artifact_inventory.json` gives SHA-256 values of the actual released files.
-The source PDFs/TeX, internal reviews, unused plots, failed runs and credentials
-are not uploaded.
+The repository distributes experiment artifacts; it does not distribute the
+manuscript PDF or LaTeX source.

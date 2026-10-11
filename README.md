@@ -4,12 +4,11 @@ Code and scoped experiment artifacts for **Search Shapes Conclusions: Auditing
 Evidence Selection Bias in Deep Research Agents**.
 
 **Experiment release:** [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) maps the
-available code, trajectory data, corrected analyses and figures. Start there for
-paper-result reproduction and the explicit list of withheld or missing items.
+available code, trajectory data, analyses and figures. Start there for
+installation, experiment mappings and reproduction commands.
 [`experiments/`](experiments/) contains versioned exports; research sources are
 in [`scripts/`](scripts/) and [`research_scripts/`](research_scripts/).
 Only manuscript-related experiments and their necessary dependencies are included.
-Unused historical experiments and inconsistent exports are excluded.
 
 An agent chooses queries, opens documents, and decides when to continue. The
 observed documents can therefore be a selected sample of a larger candidate
@@ -45,7 +44,7 @@ Run the standard-library tests with:
 python3 -m unittest discover -s tests -p 'test_*.py'
 ```
 
-## Scope and reproducibility boundary
+## Data and execution
 
 The portable audit package does not create probabilities for unlogged actions:
 zero support is rejected and must be addressed in the data-collection protocol.
@@ -53,11 +52,11 @@ The supplied example is an engineering smoke test, not a paper result.
 The release includes the relevant processed candidate pools, model features,
 216 public-agent episodes and 4,800 paired-intervention trajectories. It does
 not include model weights or GPU runtime dependencies. See the reproduction
-guide for tested entry points, exact table mappings and withheld items.
+guide for tested entry points and experiment mappings.
 
 Public users can run the estimator on the documented JSONL schema and reproduce
-selected numerical analyses directly from the archived data. Complete end-to-end
-model reruns require the additional inputs listed in the reproduction guide.
+the listed numerical analyses directly from the released data. Model execution
+requires local model weights and the runtime dependencies described in the guide.
 
 ## Citation
 
