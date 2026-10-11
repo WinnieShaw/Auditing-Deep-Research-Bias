@@ -1,0 +1,149 @@
+protocol_version: esb-ms2-external-v1
+seed: 2026091501
+source:
+  name: MS2
+  paper: "MS^2: Multi-Document Summarization of Medical Studies"
+  repository: https://github.com/allenai/ms2
+  archive_url: https://ai2-s2-ms2.s3-us-west-2.amazonaws.com/ms_data_2021-04-12.zip
+  archive_sha256: 1c51a2156c5777568b0a242d1e8d7a0321a51924f3ff41ec9d3c1dd6fc90c645
+  development_member: ms2_data/training_reviews.jsonl
+  holdout_member: ms2_data/validation_reviews.jsonl
+eligibility:
+  minimum_candidate_documents: 8
+  maximum_candidate_documents: 30
+  minimum_claim_matched_documents: 8
+  require_review_title: true
+  require_document_title_and_abstract: true
+  choose_claim_by: maximum_document_coverage_then_lexicographic
+cohorts:
+  development_tasks: 400
+  development_train_tasks: 300
+  development_validation_tasks: 100
+  holdout_tasks: 150
+  excluded_review_ids:
+    - "205832151"
+  exclusion_reason: validation example inspected during source-format audit
+observed_information:
+  query: review_title
+  candidate_metadata:
+    - document_title
+    - first_30_and_last_30_abstract_tokens
+    - full_abstract_for_screening
+  opened_evidence:
+    - structured_direction_extraction
+    - evidence_sentence
+  forbidden_for_selection_and_nuisance_models:
+    - study_significance_probabilities
+    - review_significance_probabilities
+    - expert_summary
+estimand:
+  study_score: probability_significantly_increased_minus_probability_significantly_decreased
+  target: equal_weight_finite_claim_aligned_evidence_mean
+  unmatched_included_studies_are_search_distractors: true
+  claim_alignment: exact_normalized_intervention_outcome
+selection:
+  budgets:
+    - 4
+    - 8
+  policies:
+    - neutral
+    - pro_increase
+    - pro_no_difference
+    - pro_decrease
+  minimum_exploration_probability: 0.15
+  randomized_candidate_order: true
+development_experiment:
+  visible_score_model: Qwen3-8B
+  visible_score_prompt_version: ms2-visible-direction-edge60-v2
+  tfidf_max_features: 40000
+  outcome_ridge_alphas:
+    - 1.0
+    - 10.0
+    - 100.0
+  outcome_crossfit_folds: 5
+  policy_strengths:
+    - 0.75
+    - 2.50
+    - 5.00
+    - 8.00
+  replicates: 30
+  minimum_propensity: 0.03
+  maximum_propensity: 0.97
+  cloc_weightings:
+    - logged_propensity
+    - uniform
+  cloc_variance_scales:
+    - 0.10
+    - 0.25
+    - 0.50
+    - 1.00
+    - 2.00
+    - 4.00
+holdout_lock:
+  visible_interface: full_abstract
+  scorer_prompt_version: ms2-visible-direction-full_abstract-v3
+  model_families:
+    - Qwen2.5-32B-Instruct
+    - OLMo-3-7B-Instruct
+  point_estimator:
+    ridge_alpha: 10.0
+    cloc_weighting: uniform
+    cloc_variance_scale: 0.50
+  policy_score_sources:
+    primary: raw_zero_shot_visible_direction
+    secondary: supervised_visible_reranker
+  policy_strengths:
+    - 2.50
+    - 8.00
+  snar:
+    gammas:
+      - 1.0
+      - 1.5
+      - 2.0
+      - 3.0
+    hidden_alignments:
+      - -1.0
+      - 1.0
+    sampling_radius_coefficient: 3.1623
+    sampling_radius_motivation: 90_percent_chebyshev
+  primary_success:
+    minimum_overall_point_mae_gain: 0.03
+    minimum_snar_interval_coverage: 0.90
+    maximum_answered_wrong_direction_rate_at_gamma_2: 0.05
+    minimum_answer_rate_at_gamma_2: 0.05
+methods:
+  fixed:
+    - naive_opened_mean
+    - global_outcome_regression
+    - logged_hajek_ipw
+    - horvitz_aipw
+    - hajek_dr
+  proposed:
+    name: CLOC
+    expansion: Causal Local Outcome Calibration
+  snar_extension:
+    name: CLOC-S
+    output: sensitivity_interval_and_abstention
+evaluation:
+  primary_metric: task_macro_mean_absolute_error
+  secondary_metrics:
+    - wrong_direction_rate
+    - interval_coverage
+    - interval_width
+    - expert_summary_consistency
+  direction_tolerance: 0.05
+  bootstrap_replicates: 2000
+gate:
+  minimum_external_holdout_tasks: 100
+  maximum_weak_policy_relative_harm: 0.02
+  minimum_strong_policy_relative_gain: 0.10
+  minimum_overall_gain_over_best_deployable_baseline: 0.03
+  minimum_wrong_direction_relative_gain: 0.10
+  minimum_snar_interval_coverage: 0.90
+  minimum_model_families: 2
+integrity:
+  development_and_holdout_are_officially_disjoint: true
+  holdout_outcomes_sealed_until_method_lock: true
+  no_label_value_based_task_selection: true
+  one_shot_holdout: true
+  no_threshold_changes_after_holdout: true

@@ -1,0 +1,29 @@
+{
+  "protocol_version": "perspectrum-query-v1",
+  "scope": "strict_visibility_cross_domain_llm_query_diagnostic",
+  "model_key": "llama3_3_70b",
+  "shard_index": 1,
+  "shard_count": 3,
+  "topics": 12,
+  "episodes": 216,
+  "trace_rows": 1080,
+  "frozen_anchor": "outcome_regression",
+  "frozen_anchor_shrinkage": 0.5,
+  "unopened_evidence_text_used_by_nuisance_model": false,
+  "query_model_path_read_only": "<MODEL_DIR>/LLM-Research/Llama-3.3-70B-Instruct",
+  "parameter_selection_on_holdout": false,
+  "output_is_confirmatory": false,
+  "parse_rate": 1.0,
+  "input_hashes": {
+    "config": "eede28e6b516c4017083f92c7a373b8a0b441b689f96164d0e03482548cc199f",
+    "method_lock": "287743d82ba34f3dcaf944c6f998ca192de2e7bba202cca0401fd5c1c40c3602",
+    "development_tasks": "d43808cfd9d193e20234735eaf32152823d5e90a143d4aae475e749f026cab71",
+    "holdout_tasks": "e09113a91e0eee29d7262bff6c78d70b3da7fa29a656f78d8a5f4be9f58e77f9",
+    "holdout_documents": "ad99a19790390d2726233919d0dbe261608f5753380373199da19f7e2bb2e125",
+    "holdout_private_outcomes": "b81a88bf9fe0523247913e91e4e305cf5ea2a88b3d141a56c786f0e88eebbd34",
+    "holdout_private_targets": "1b23b4689e4e0442dbb1821e0522622300497386c70fdbfd7a7acc9fffbb1737",
+    "model_config": "95ef9768e4741543dbfaf0c274f101855883ff338b235c99eca2b6a4f4abee12",
+    "cells": "81197a802a1f971e1a3df43f321362b9a0ca4da64df4ea017785a771f545c70f",
+    "traces": "db972e8647e2a364bd7de58be1ec26f9a7df1fb6389cf454fdbef9391915991f"
+  }
+}

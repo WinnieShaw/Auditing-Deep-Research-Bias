@@ -1,0 +1,69 @@
+protocol_version: ms2-sequential-search-confirmatory-v1
+seed: 2026091612
+source:
+  base_config: configs/ms2_external_v1.yaml
+  archive: evidence_selection_benchmark/data/raw/ms2_original/ms_data_2021-04-12.zip
+  archive_sha256: 1c51a2156c5777568b0a242d1e8d7a0321a51924f3ff41ec9d3c1dd6fc90c645
+  member: ms2_data/training_reviews.jsonl
+  excluded_development_manifest: evidence_selection_benchmark/data/ms2_external_v1/development_manifest.jsonl
+cohort:
+  tasks: 200
+  selection: lowest_stable_hash_after_excluding_all_prior_development_tasks
+search:
+  maximum_rounds: 4
+  minimum_rounds_before_stop: 2
+  replicates: 1
+  rank_conditions:
+    - neutral
+    - pro_increase
+    - pro_decrease
+  stopping_regimes:
+    - fixed_horizon
+    - adaptive
+  controllers:
+    - agent
+    - uniform
+    - active_cess
+  relevance_weight: 2.0
+  direction_weight: 1.5
+  duplicate_logit_penalty: 1.5
+  selection_temperature: 1.0
+  minimum_selection_probability: 0.005
+  protected_exploration_mixture: 0.75
+  active_influence_power: 0.25
+  stop_probability_if_recommend_stop: 0.75
+  stop_probability_if_recommend_continue: 0.15
+query_agent:
+  output_order: stop_then_query
+  maximum_history_items: 4
+  maximum_evidence_characters: 700
+  max_input_tokens: 1536
+  max_new_tokens: 64
+models:
+  qwen2_5_32b:
+    model_path: <MODEL_DIR>/Qwen2.5-32B-Instruct
+    development_scores: evidence_selection_benchmark/features/ms2_external_v1/qwen2_5_32b_full_abstract_visible_scores.jsonl
+    confirmatory_scores: evidence_selection_benchmark/features/ms2_sequential_search_confirmatory_v1/qwen2_5_32b_visible_scores.jsonl
+  olmo3_7b:
+    model_path: <MODEL_DIR>/allenai-Olmo-3-7B-Instruct
+    development_scores: evidence_selection_benchmark/features/ms2_external_v1/olmo3_7b_full_abstract_visible_scores.jsonl
+    confirmatory_scores: evidence_selection_benchmark/features/ms2_sequential_search_confirmatory_v1/olmo3_7b_visible_scores.jsonl
+evaluation:
+  direction_tolerance: 0.05
+  bootstrap_replicates: 5000
+  bootstrap_seed: 2026091613
+gate:
+  minimum_query_parse_rate: 0.95
+  minimum_agent_naive_rank_gap: 0.05
+  minimum_active_cess_gain_over_active_naive: 0.03
+  maximum_other_model_relative_harm: 0.02
+  maximum_active_harm_vs_uniform_cess: 0.02
+  minimum_active_gain_vs_uniform_in_one_model: 0.01
+integrity:
+  task_selection_must_not_read_outcome_values: true
+  prior_development_task_overlap_must_be_zero: true
+  environment_must_be_label_free: true
+  nuisance_training_uses_prior_development_only: true
+  query_prompt_sees_opened_outcomes_only: true
+  all_conditional_selection_probabilities_logged: true
+  all_conditional_stop_probabilities_logged: true

@@ -1,7 +1,15 @@
 # Auditing Deep Research Bias
 
-This repository contains a small, CPU-only post-processing implementation for
-auditing sequential evidence selection in Deep Research agents.
+Code and scoped experiment artifacts for **Search Shapes Conclusions: Auditing
+Evidence Selection Bias in Deep Research Agents**.
+
+**Experiment release:** [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) maps the
+available code, trajectory data, corrected analyses and figures. Start there for
+paper-result reproduction and the explicit list of withheld or missing items.
+[`experiments/`](experiments/) contains versioned exports; research sources are
+in [`scripts/`](scripts/) and [`research_scripts/`](research_scripts/).
+Only manuscript-related experiments and their necessary dependencies are included.
+Unused historical experiments and inconsistent exports are excluded.
 
 An agent chooses queries, opens documents, and decides when to continue. The
 observed documents can therefore be a selected sample of a larger candidate
@@ -39,16 +47,17 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 
 ## Scope and reproducibility boundary
 
-This is a public audit package, not the private search-agent runner. It does
-not contain model weights, private candidate documents, search caches, API
-credentials, internal machine paths, or unreleased result files. It also does
-not create probabilities for unlogged actions: zero support is rejected and
-must be addressed in the data-collection protocol. The supplied example is an
-engineering smoke test, not a paper result.
+The portable audit package does not create probabilities for unlogged actions:
+zero support is rejected and must be addressed in the data-collection protocol.
+The supplied example is an engineering smoke test, not a paper result.
+The release includes the relevant processed candidate pools, model features,
+216 public-agent episodes and 4,800 paired-intervention trajectories. It does
+not include model weights or GPU runtime dependencies. See the reproduction
+guide for tested entry points, exact table mappings and withheld items.
 
-The full research evaluation uses authorized task data and separately managed
-agent configurations. Public users can reproduce the estimator and all
-post-processing once they have an equivalent, shareable JSONL export.
+Public users can run the estimator on the documented JSONL schema and reproduce
+selected numerical analyses directly from the archived data. Complete end-to-end
+model reruns require the additional inputs listed in the reproduction guide.
 
 ## Citation
 

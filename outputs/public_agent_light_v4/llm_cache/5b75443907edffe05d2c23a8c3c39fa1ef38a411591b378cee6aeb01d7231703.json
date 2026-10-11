@@ -1,0 +1,205 @@
+{
+  "cache_key": "5b75443907edffe05d2c23a8c3c39fa1ef38a411591b378cee6aeb01d7231703",
+  "key_material": {
+    "model_path": "<MODEL_DIR>/Qwen/Qwen2.5-32B-Instruct",
+    "model_revision": "9c6772f138ef9e5b3d1c18f2c87e451bbc01f5f1a4eabb36f9bf4f53829b903e",
+    "system_prompt": [
+      "You are a research assistant conducting research on the user's input topic. For context, today's date is Thu Sep 24, 2026.\n\n<Task>\nYour job is to use tools to gather information about the user's input topic.\nYou can use any of the tools provided to you to find resources that can help answer the research question. You can call these tools in series or in parallel, your research is conducted in a tool-calling loop.\n</Task>\n\n<Available Tools>\nYou have access to two main tools:\n1. **tavily_search**: For conducting web searches to gather information\n2. **think_tool**: For reflection and strategic planning during research\nFor this controlled study, tavily_search accesses a frozen evidence pool. Call it with exactly one query at a time. You must complete exactly 4 successful searches; formulate later queries after reading earlier returned passages.\n\n**CRITICAL: Use think_tool after each search to reflect on results and plan next steps. Do not call think_tool with the tavily_search or any other tools. It should be to reflect on the results of the search.**\n</Available Tools>\n\n<Instructions>\nThink like a human researcher with limited time. Follow these steps:\n\n1. **Read the question carefully** - What specific information does the user need?\n2. **Start with broader searches** - Use broad, comprehensive queries first\n3. **After each search, pause and assess** - Do I have enough to answer? What's still missing?\n4. **Execute narrower searches as you gather information** - Fill in the gaps\n5. **Stop when you can answer confidently** - Don't keep searching for perfection\n</Instructions>\n\n<Hard Limits>\n**Tool Call Budgets** (Prevent excessive searching):\n- **Simple queries**: Use 2-3 search tool calls maximum\n- **Complex queries**: Use up to 5 search tool calls maximum\n- **Always stop**: After 5 search tool calls if you cannot find the right sources\n\n**Stop Immediately When**:\n- You can answer the user's question comprehensively\n- You have 3+ relevant examples/sources for the question\n- Your last 2 searches returned similar information\n</Hard Limits>\n\n<Show Your Thinking>\nAfter each search tool call, use think_tool to analyze the results:\n- What key information did I find?\n- What's missing?\n- Do I have enough to answer the question comprehensively?\n- Should I search more or provide my answer?\n</Show Your Thinking>\n"
+    ],
+    "messages": [
+      {
+        "content": "You are a research assistant conducting research on the user's input topic. For context, today's date is Thu Sep 24, 2026.\n\n<Task>\nYour job is to use tools to gather information about the user's input topic.\nYou can use any of the tools provided to you to find resources that can help answer the research question. You can call these tools in series or in parallel, your research is conducted in a tool-calling loop.\n</Task>\n\n<Available Tools>\nYou have access to two main tools:\n1. **tavily_search**: For conducting web searches to gather information\n2. **think_tool**: For reflection and strategic planning during research\nFor this controlled study, tavily_search accesses a frozen evidence pool. Call it with exactly one query at a time. You must complete exactly 4 successful searches; formulate later queries after reading earlier returned passages.\n\n**CRITICAL: Use think_tool after each search to reflect on results and plan next steps. Do not call think_tool with the tavily_search or any other tools. It should be to reflect on the results of the search.**\n</Available Tools>\n\n<Instructions>\nThink like a human researcher with limited time. Follow these steps:\n\n1. **Read the question carefully** - What specific information does the user need?\n2. **Start with broader searches** - Use broad, comprehensive queries first\n3. **After each search, pause and assess** - Do I have enough to answer? What's still missing?\n4. **Execute narrower searches as you gather information** - Fill in the gaps\n5. **Stop when you can answer confidently** - Don't keep searching for perfection\n</Instructions>\n\n<Hard Limits>\n**Tool Call Budgets** (Prevent excessive searching):\n- **Simple queries**: Use 2-3 search tool calls maximum\n- **Complex queries**: Use up to 5 search tool calls maximum\n- **Always stop**: After 5 search tool calls if you cannot find the right sources\n\n**Stop Immediately When**:\n- You can answer the user's question comprehensively\n- You have 3+ relevant examples/sources for the question\n- Your last 2 searches returned similar information\n</Hard Limits>\n\n<Show Your Thinking>\nAfter each search tool call, use think_tool to analyze the results:\n- What key information did I find?\n- What's missing?\n- Do I have enough to answer the question comprehensively?\n- Should I search more or provide my answer?\n</Show Your Thinking>\n",
+        "role": "system"
+      },
+      {
+        "content": "Historical context and precedents of employing mercenaries. This research should cover the historical use of mercenaries in various conflicts and regions, focusing on the outcomes and impacts of their employment. The sources should include historical documents, academic papers, and reputable historical analyses. The research should provide a detailed overview of the historical context, including the reasons for employing mercenaries, the effectiveness of their use, and any notable successes or failures.",
+        "role": "user"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-a744269198b4b7f7",
+            "function": {
+              "name": "tavily_search",
+              "arguments": "{\"queries\": [\"historical use of mercenaries in various conflicts and regions\"]}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "--- SOURCE 1: Evidence passage 1586 ---\nURL: perspectrum://perspectrum_214_e1586\nDOCUMENT ID: perspectrum_214_e1586\n\nFULL EVIDENCE PASSAGE:\nCurrently mercenary work as a profession is not regulated by law, which allows the corruption and lack of guaranteed quality, as well as the problems of accountability to remain problematic. Regulating PMCs encourage a safer, professionalised security sector which can be standardised and controlled. Governments would then legislate, regulate and moderate the use of such forces rather than provide them outright. PMCs today are legitimate businesses, much of their work has nothing to do with fighting and killing MPRI for example \"shipped more than $900,000,000 worth of donated food and medical supplies to the newly independent states of the former Soviet Union over a five year period”. These companies are already placing greater emphasis on having a good reputation and are increasingly transparent so many companies would welcome regulation.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-a744269198b4b7f7"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-b8eb2cde210763ef",
+            "function": {
+              "name": "think_tool",
+              "arguments": "{\"reflection\": \"The returned passage focuses more on the modern context of Private Military Companies (PMCs) rather than the historical use of mercenaries. It does not provide the historical context, precedents, or outcomes of employing mercenaries in various conflicts and regions as requested. I need to adjust my search to focus more on historical examples and their impacts.\"}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "Reflection recorded: The returned passage focuses more on the modern context of Private Military Companies (PMCs) rather than the historical use of mercenaries. It does not provide the historical context, precedents, or outcomes of employing mercenaries in various conflicts and regions as requested. I need to adjust my search to focus more on historical examples and their impacts.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-b8eb2cde210763ef"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-97b78237131ab4ea",
+            "function": {
+              "name": "tavily_search",
+              "arguments": "{\"queries\": [\"historical examples of mercenaries and their impacts in various conflicts\"]}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "--- SOURCE 2: Evidence passage 2476 ---\nURL: perspectrum://perspectrum_214_e2476\nDOCUMENT ID: perspectrum_214_e2476\n\nFULL EVIDENCE PASSAGE:\nPrivate Military Companies (PMCs) are independent, registered, corporate actors who have risen in prominence and replaced mercenaries in their security function. PMCs are different to mercenaries in the sense that mercenaries will fight for the highest bidder. PMCs on the other hand will only work for legitimate governments and intergovernmental organisations such as the UN1. Their main roles include; support services, logical support, humanitarian support and the upholding of law and order and defensive military action2. PMC activity has seen corporations operating on behalf of the Somalian government training coast guards to deal with the threat of piracy which peaked in 20093. The legal status of PMCs, compared with mercenaries, makes them a preferable choice for the aforementioned tasks reducing the prominence of illegal hired guns.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-97b78237131ab4ea"
+      }
+    ],
+    "tool_schemas": [
+      {
+        "type": "function",
+        "function": {
+          "name": "tavily_search",
+          "description": "Search the frozen PERSPECTRUM candidate pool. Supply one adaptive query; one complete evidence passage is returned.",
+          "parameters": {
+            "properties": {
+              "queries": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "queries"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "think_tool",
+          "description": "Strategic reflection tool for research planning",
+          "parameters": {
+            "properties": {
+              "reflection": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "reflection"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "ResearchComplete",
+          "description": "Call this tool to indicate that the research is complete.",
+          "parameters": {
+            "properties": {},
+            "type": "object"
+          }
+        }
+      }
+    ],
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_tokens": 1024,
+    "request_seed": 2026092402,
+    "serialized_model_configuration": {
+      "id": [
+        "langchain",
+        "chat_models",
+        "openai",
+        "ChatOpenAI"
+      ],
+      "kwargs": {
+        "max_retries": 0,
+        "max_tokens": 1024,
+        "model_name": "Qwen2.5-32B-Instruct",
+        "openai_api_base": "http://127.0.0.1:8000/v1",
+        "openai_api_key": {
+          "id": [
+            "OPENAI_API_KEY"
+          ],
+          "lc": 1,
+          "type": "secret"
+        },
+        "openai_proxy": null,
+        "output_version": null,
+        "request_timeout": 180.0,
+        "seed": 2026092402,
+        "temperature": 0.0,
+        "top_p": 1.0
+      },
+      "lc": 1,
+      "name": "ChatOpenAI",
+      "type": "constructor"
+    },
+    "remaining_invocation_parameters": {
+      "stop": null
+    },
+    "canonical_request_token_ids_sha256": "3aa22cce16cf698888da3e7c7ba77e6e48868b54c6649a1349273cb905e3620a",
+    "canonical_request_token_count": 1628
+  },
+  "raw_generation_binary": "5b75443907edffe05d2c23a8c3c39fa1ef38a411591b378cee6aeb01d7231703.pkl",
+  "raw_generation_sha256": "ffa11f0e16b719f28dd5b0bed88a0710d0ab1e78247b7faf03aac762c4387200",
+  "parsed_generation_structure": [
+    {
+      "text": "",
+      "generation_info": {
+        "finish_reason": "tool_calls",
+        "logprobs": null
+      },
+      "type": "ChatGeneration",
+      "message": {
+        "content": "",
+        "additional_kwargs": {
+          "refusal": null
+        },
+        "response_metadata": {
+          "token_usage": {
+            "completion_tokens": 68,
+            "prompt_tokens": 1556,
+            "total_tokens": 1624,
+            "completion_tokens_details": null,
+            "prompt_tokens_details": null
+          },
+          "model_provider": "openai",
+          "model_name": "Qwen2.5-32B-Instruct",
+          "system_fingerprint": null,
+          "id": "chatcmpl-a1594f6acf41c92b",
+          "finish_reason": "tool_calls",
+          "logprobs": null
+        },
+        "type": "ai",
+        "name": null,
+        "id": "lc_run--01a0d2ad-0b27-78f0-9925-82deb38d30d3-0"
+      }
+    }
+  ],
+  "created_utc": "2026-09-24T09:09:13.312796+00:00"
+}

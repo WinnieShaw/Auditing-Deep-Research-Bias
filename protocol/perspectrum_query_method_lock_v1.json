@@ -1,0 +1,15 @@
+{
+  "protocol_version": "perspectrum-query-method-lock-v1",
+  "status": "frozen_before_query_evaluation",
+  "main_estimator": "risk_adaptive_cess",
+  "formula": "clip(anchor + lambda * (sequential_dr - anchor), -1, 1)",
+  "selected_anchor": "outcome_regression",
+  "anchor_shrinkage_lambda": 0.5,
+  "ridge_alpha": 0.1,
+  "maximum_rounds": 5,
+  "direction_tolerance": 0.05,
+  "selection_source": "267 development claims with leave-one-claim-out nuisance predictions",
+  "unopened_evidence_text_used_by_nuisance_model": false,
+  "holdout_query_results_loaded": false,
+  "status_note": "The query experiment is a post-holdout mechanism diagnostic, not a new sealed confirmatory test."
+}

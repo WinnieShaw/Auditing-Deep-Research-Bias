@@ -1,0 +1,41 @@
+{
+  "paired_task_seed_units": 108,
+  "definitions": {
+    "query_distance": "mean round-wise token-set Jaccard distance; descriptive, not an embedding metric",
+    "position_document_overlap": "fraction of aligned rounds selecting the same document",
+    "set_document_jaccard": "Jaccard overlap of selected-document ID sets",
+    "opened_evidence_abs_gap": "absolute difference between ranking conditions in mean selected private evidence score",
+    "missing_first_divergence_round": "no divergence through round four",
+    "report_scope": "final reports are saved but not scored; opened-evidence balance is not called report-level balance"
+  },
+  "means": {
+    "shared_first_query": 1.0,
+    "query_diverged_by_k4": 0.6388888888888888,
+    "mean_query_token_jaccard_distance": 0.20463822521544184,
+    "document_sequence_diverged_by_k4": 0.75,
+    "position_document_overlap_k2": 0.6851851851851852,
+    "position_document_overlap_k4": 0.6643518518518519,
+    "set_document_jaccard_k2": 0.6327160493827161,
+    "set_document_jaccard_k4": 0.6067460317460317,
+    "opened_evidence_abs_gap_k1": 0.48148148148148145,
+    "opened_evidence_abs_gap_k2": 0.5848765432098766,
+    "opened_evidence_abs_gap_k4": 0.5501543209876543,
+    "supporting_unique_documents_k4": 3.388888888888889,
+    "opposing_unique_documents_k4": 3.3796296296296298,
+    "supporting_final_report_saved": 1.0,
+    "opposing_final_report_saved": 1.0
+  },
+  "first_query_divergence_round_counts": {
+    "2": 23,
+    "3": 30,
+    "4": 16,
+    "none": 39
+  },
+  "first_document_divergence_round_counts": {
+    "1": 26,
+    "2": 31,
+    "3": 15,
+    "4": 9,
+    "none": 27
+  }
+}

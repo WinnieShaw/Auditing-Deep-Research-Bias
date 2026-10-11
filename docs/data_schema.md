@@ -1,9 +1,10 @@
 # Public JSONL schema
 
-The runner consumes one JSON object per episode. An episode is one task under
-one ranking condition and one logged search trajectory. The release does not
-ship the underlying documents or model outputs; users must provide data they
-are authorized to share.
+The portable runner consumes one JSON object per episode. An episode is one task
+under one ranking condition and one logged search trajectory. Historical exports
+under `experiments/` use their original, different schemas and are not directly
+interchangeable with this input contract. See `REPRODUCIBILITY.md` for their
+reproduction entry points. Complete underlying document corpora are not bundled.
 
 Required episode fields:
 
@@ -59,4 +60,3 @@ unlogged probability, recover candidates that were never represented in the
 input, or prove an internal model mechanism. Task-cluster bootstrap intervals
 describe uncertainty of the reported task-level metric; they are not
 single-task confidence intervals for an unobserved population target.
-

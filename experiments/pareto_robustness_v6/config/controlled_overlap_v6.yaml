@@ -1,0 +1,24 @@
+experiment_id: causal_overlap_v6_cpu
+base_seed: 16092026
+seeds: [101, 211, 307, 401, 503, 601, 701, 809, 907, 1009, 1103, 1201, 1301, 1409, 1511, 1601, 1709, 1801, 1901, 2003]
+tasks:
+  development: 400
+  calibration: 200
+  test: 400
+candidate_documents: 30
+outcome_noise: 0.45
+proxy_noise: 0.55
+query_feedback: 1.0
+stopping:
+  intercept: 3.0
+  round_penalty: 0.35
+  agreement_penalty: 0.50
+weight_caps: [2.0, 5.0, 10.0, 20.0, 50.0]
+fixed_lambdas: [0.0, 0.25, 0.5, 0.75, 1.0]
+scenarios:
+  - {id: overlap_eps020, family: overlap, kappa: 4.0, rounds: 4, rho: 0.20, stop_strength: 0.0, force_full_horizon: true, outcome_model: correct}
+  - {id: overlap_eps010, family: overlap, kappa: 4.0, rounds: 4, rho: 0.10, stop_strength: 0.0, force_full_horizon: true, outcome_model: correct}
+  - {id: overlap_eps005, family: overlap, kappa: 4.0, rounds: 4, rho: 0.05, stop_strength: 0.0, force_full_horizon: true, outcome_model: correct}
+  - {id: overlap_eps002, family: overlap, kappa: 4.0, rounds: 4, rho: 0.02, stop_strength: 0.0, force_full_horizon: true, outcome_model: correct}
+  - {id: overlap_eps001, family: overlap, kappa: 4.0, rounds: 4, rho: 0.01, stop_strength: 0.0, force_full_horizon: true, outcome_model: correct}
+  - {id: overlap_eps000_deterministic, family: overlap_zero_support, kappa: 4.0, rounds: 4, rho: 0.0, stop_strength: 0.0, force_full_horizon: true, outcome_model: correct, deterministic: true}

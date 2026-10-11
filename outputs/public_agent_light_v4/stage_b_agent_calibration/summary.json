@@ -1,0 +1,46 @@
+{
+  "diagnostics": [
+    {
+      "gamma": 0.6,
+      "pairs": 12,
+      "episode_success_rate": 1.0,
+      "k2_opened_mean_ranking_sensitivity": 0.5833333333333334,
+      "k4_document_sequence_different_rate": 0.75,
+      "k4_median_realized_weight_ess": 2.7701230670260513,
+      "checks": {
+        "paired_state": true,
+        "common_gumbel": true,
+        "propensity": true,
+        "computational_replay": true,
+        "pairs": 24
+      },
+      "legal": true
+    },
+    {
+      "gamma": 0.55,
+      "pairs": 12,
+      "episode_success_rate": 1.0,
+      "k2_opened_mean_ranking_sensitivity": 0.5,
+      "k4_document_sequence_different_rate": 0.6666666666666666,
+      "k4_median_realized_weight_ess": 2.8087242139402844,
+      "checks": {
+        "paired_state": true,
+        "common_gumbel": true,
+        "propensity": true,
+        "computational_replay": true,
+        "pairs": 24
+      },
+      "legal": true
+    }
+  ],
+  "selected_gamma": 0.55,
+  "cache": {
+    "directory": "./outputs/public_agent_light_v4/llm_cache",
+    "hits": 414,
+    "misses": 276,
+    "writes": 276,
+    "entries": 353,
+    "legacy_read_only_directory": "./outputs/public_agent_light_v3/llm_cache",
+    "legacy_hits": 0
+  }
+}

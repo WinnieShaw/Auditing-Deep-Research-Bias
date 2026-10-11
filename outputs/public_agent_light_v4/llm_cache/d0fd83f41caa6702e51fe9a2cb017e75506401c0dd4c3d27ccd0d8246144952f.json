@@ -1,0 +1,205 @@
+{
+  "cache_key": "d0fd83f41caa6702e51fe9a2cb017e75506401c0dd4c3d27ccd0d8246144952f",
+  "key_material": {
+    "model_path": "<MODEL_DIR>/Qwen/Qwen2.5-32B-Instruct",
+    "model_revision": "9c6772f138ef9e5b3d1c18f2c87e451bbc01f5f1a4eabb36f9bf4f53829b903e",
+    "system_prompt": [
+      "You are a research assistant conducting research on the user's input topic. For context, today's date is Thu Sep 24, 2026.\n\n<Task>\nYour job is to use tools to gather information about the user's input topic.\nYou can use any of the tools provided to you to find resources that can help answer the research question. You can call these tools in series or in parallel, your research is conducted in a tool-calling loop.\n</Task>\n\n<Available Tools>\nYou have access to two main tools:\n1. **tavily_search**: For conducting web searches to gather information\n2. **think_tool**: For reflection and strategic planning during research\nFor this controlled study, tavily_search accesses a frozen evidence pool. Call it with exactly one query at a time. You must complete exactly 4 successful searches; formulate later queries after reading earlier returned passages.\n\n**CRITICAL: Use think_tool after each search to reflect on results and plan next steps. Do not call think_tool with the tavily_search or any other tools. It should be to reflect on the results of the search.**\n</Available Tools>\n\n<Instructions>\nThink like a human researcher with limited time. Follow these steps:\n\n1. **Read the question carefully** - What specific information does the user need?\n2. **Start with broader searches** - Use broad, comprehensive queries first\n3. **After each search, pause and assess** - Do I have enough to answer? What's still missing?\n4. **Execute narrower searches as you gather information** - Fill in the gaps\n5. **Stop when you can answer confidently** - Don't keep searching for perfection\n</Instructions>\n\n<Hard Limits>\n**Tool Call Budgets** (Prevent excessive searching):\n- **Simple queries**: Use 2-3 search tool calls maximum\n- **Complex queries**: Use up to 5 search tool calls maximum\n- **Always stop**: After 5 search tool calls if you cannot find the right sources\n\n**Stop Immediately When**:\n- You can answer the user's question comprehensively\n- You have 3+ relevant examples/sources for the question\n- Your last 2 searches returned similar information\n</Hard Limits>\n\n<Show Your Thinking>\nAfter each search tool call, use think_tool to analyze the results:\n- What key information did I find?\n- What's missing?\n- Do I have enough to answer the question comprehensively?\n- Should I search more or provide my answer?\n</Show Your Thinking>\n"
+    ],
+    "messages": [
+      {
+        "content": "You are a research assistant conducting research on the user's input topic. For context, today's date is Thu Sep 24, 2026.\n\n<Task>\nYour job is to use tools to gather information about the user's input topic.\nYou can use any of the tools provided to you to find resources that can help answer the research question. You can call these tools in series or in parallel, your research is conducted in a tool-calling loop.\n</Task>\n\n<Available Tools>\nYou have access to two main tools:\n1. **tavily_search**: For conducting web searches to gather information\n2. **think_tool**: For reflection and strategic planning during research\nFor this controlled study, tavily_search accesses a frozen evidence pool. Call it with exactly one query at a time. You must complete exactly 4 successful searches; formulate later queries after reading earlier returned passages.\n\n**CRITICAL: Use think_tool after each search to reflect on results and plan next steps. Do not call think_tool with the tavily_search or any other tools. It should be to reflect on the results of the search.**\n</Available Tools>\n\n<Instructions>\nThink like a human researcher with limited time. Follow these steps:\n\n1. **Read the question carefully** - What specific information does the user need?\n2. **Start with broader searches** - Use broad, comprehensive queries first\n3. **After each search, pause and assess** - Do I have enough to answer? What's still missing?\n4. **Execute narrower searches as you gather information** - Fill in the gaps\n5. **Stop when you can answer confidently** - Don't keep searching for perfection\n</Instructions>\n\n<Hard Limits>\n**Tool Call Budgets** (Prevent excessive searching):\n- **Simple queries**: Use 2-3 search tool calls maximum\n- **Complex queries**: Use up to 5 search tool calls maximum\n- **Always stop**: After 5 search tool calls if you cannot find the right sources\n\n**Stop Immediately When**:\n- You can answer the user's question comprehensively\n- You have 3+ relevant examples/sources for the question\n- Your last 2 searches returned similar information\n</Hard Limits>\n\n<Show Your Thinking>\nAfter each search tool call, use think_tool to analyze the results:\n- What key information did I find?\n- What's missing?\n- Do I have enough to answer the question comprehensively?\n- Should I search more or provide my answer?\n</Show Your Thinking>\n",
+        "role": "system"
+      },
+      {
+        "content": "Historical context and precedents of employing mercenaries. This research should cover the historical use of mercenaries in various conflicts and regions, focusing on the outcomes and impacts of their employment. The sources should include historical documents, academic papers, and reputable historical analyses. The research should provide a detailed overview of the historical context, including the reasons for employing mercenaries, the effectiveness of their use, and any notable successes or failures.",
+        "role": "user"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-99aae7003473eee0",
+            "function": {
+              "name": "tavily_search",
+              "arguments": "{\"queries\": [\"historical use of mercenaries in various conflicts and regions\"]}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "--- SOURCE 1: Evidence passage 1588 ---\nURL: perspectrum://perspectrum_214_e1588\nDOCUMENT ID: perspectrum_214_e1588\n\nFULL EVIDENCE PASSAGE:\nThe possibility of mercenaries pulling out will always remain a risk. PMCs are not fighting for their own country so they can never be threatened with a charge of desertion. PMCs are motivated by money and do not have the interests of their employer at heart. Loyalty is given to the highest bidder and is therefore delicately balanced. They are ready enough to be your soldiers whilst you do not make war, but if war comes they take themselves off or run from the foe.”(Machiavelli, 1515) Machiavelli considered that it was mercenaries that ruined Italy much as they are now doing in Iraq and Afghanistan.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-99aae7003473eee0"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-8d04d3dfffc8e5b7",
+            "function": {
+              "name": "think_tool",
+              "arguments": "{\"reflection\": \"The passage from Machiavelli highlights the historical context of mercenaries and their potential unreliability due to their primary motivation being financial gain. This provides a good starting point for understanding the risks associated with employing mercenaries. However, I need more information on the historical use of mercenaries in various regions and conflicts, as well as the outcomes and impacts of their employment. The next search should focus on specific examples and regions.\"}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "Reflection recorded: The passage from Machiavelli highlights the historical context of mercenaries and their potential unreliability due to their primary motivation being financial gain. This provides a good starting point for understanding the risks associated with employing mercenaries. However, I need more information on the historical use of mercenaries in various regions and conflicts, as well as the outcomes and impacts of their employment. The next search should focus on specific examples and regions.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-8d04d3dfffc8e5b7"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-8b353f389492644d",
+            "function": {
+              "name": "tavily_search",
+              "arguments": "{\"queries\": [\"specific examples of mercenaries in historical conflicts and regions\"]}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "--- SOURCE 2: Evidence passage 1588 ---\nURL: perspectrum://perspectrum_214_e1588\nDOCUMENT ID: perspectrum_214_e1588\n\nFULL EVIDENCE PASSAGE:\nThe possibility of mercenaries pulling out will always remain a risk. PMCs are not fighting for their own country so they can never be threatened with a charge of desertion. PMCs are motivated by money and do not have the interests of their employer at heart. Loyalty is given to the highest bidder and is therefore delicately balanced. They are ready enough to be your soldiers whilst you do not make war, but if war comes they take themselves off or run from the foe.”(Machiavelli, 1515) Machiavelli considered that it was mercenaries that ruined Italy much as they are now doing in Iraq and Afghanistan.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-8b353f389492644d"
+      }
+    ],
+    "tool_schemas": [
+      {
+        "type": "function",
+        "function": {
+          "name": "tavily_search",
+          "description": "Search the frozen PERSPECTRUM candidate pool. Supply one adaptive query; one complete evidence passage is returned.",
+          "parameters": {
+            "properties": {
+              "queries": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "queries"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "think_tool",
+          "description": "Strategic reflection tool for research planning",
+          "parameters": {
+            "properties": {
+              "reflection": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "reflection"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "ResearchComplete",
+          "description": "Call this tool to indicate that the research is complete.",
+          "parameters": {
+            "properties": {},
+            "type": "object"
+          }
+        }
+      }
+    ],
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_tokens": 1024,
+    "request_seed": 2026092401,
+    "serialized_model_configuration": {
+      "id": [
+        "langchain",
+        "chat_models",
+        "openai",
+        "ChatOpenAI"
+      ],
+      "kwargs": {
+        "max_retries": 0,
+        "max_tokens": 1024,
+        "model_name": "Qwen2.5-32B-Instruct",
+        "openai_api_base": "http://127.0.0.1:8000/v1",
+        "openai_api_key": {
+          "id": [
+            "OPENAI_API_KEY"
+          ],
+          "lc": 1,
+          "type": "secret"
+        },
+        "openai_proxy": null,
+        "output_version": null,
+        "request_timeout": 180.0,
+        "seed": 2026092401,
+        "temperature": 0.0,
+        "top_p": 1.0
+      },
+      "lc": 1,
+      "name": "ChatOpenAI",
+      "type": "constructor"
+    },
+    "remaining_invocation_parameters": {
+      "stop": null
+    },
+    "canonical_request_token_ids_sha256": "cf24dfadfda28db0e914d5239cce824d9c0c1dfcd2c0e96aa6631ab043c7e1b5",
+    "canonical_request_token_count": 1608
+  },
+  "raw_generation_binary": "d0fd83f41caa6702e51fe9a2cb017e75506401c0dd4c3d27ccd0d8246144952f.pkl",
+  "raw_generation_sha256": "0e2697fe591ae72834643bc2df768bedbba9ef8b5af6369f324cc4a8ee45a387",
+  "parsed_generation_structure": [
+    {
+      "text": "",
+      "generation_info": {
+        "finish_reason": "tool_calls",
+        "logprobs": null
+      },
+      "type": "ChatGeneration",
+      "message": {
+        "content": "",
+        "additional_kwargs": {
+          "refusal": null
+        },
+        "response_metadata": {
+          "token_usage": {
+            "completion_tokens": 68,
+            "prompt_tokens": 1536,
+            "total_tokens": 1604,
+            "completion_tokens_details": null,
+            "prompt_tokens_details": null
+          },
+          "model_provider": "openai",
+          "model_name": "Qwen2.5-32B-Instruct",
+          "system_fingerprint": null,
+          "id": "chatcmpl-9b4f91e67d47e6ed",
+          "finish_reason": "tool_calls",
+          "logprobs": null
+        },
+        "type": "ai",
+        "name": null,
+        "id": "lc_run--01a0d25f-2eed-7d63-8cb4-30ef049305e2-0"
+      }
+    }
+  ],
+  "created_utc": "2026-09-24T07:44:10.653792+00:00"
+}

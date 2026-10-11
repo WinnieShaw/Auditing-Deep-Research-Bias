@@ -1,0 +1,13 @@
+model,endpoint,metric,value,ci95_low,ci95_high,source_tasks
+olmo3_7b,frozen_history_local_selection,MAE,0.19301128587037192,0.16693433462872526,0.22170177032354624,200
+olmo3_7b,frozen_history_local_selection,Spearman,-0.026534163354083855,-0.17388003911617214,0.121360062235109,200
+olmo3_7b,frozen_history_local_selection,direction_accuracy,0.41,0.34,0.48,200
+olmo3_7b,real_trajectory_total_selection,MAE,0.151204049285899,0.13298436918857676,0.17091000573199583,200
+olmo3_7b,real_trajectory_total_selection,Spearman,0.2687032175804396,0.12804799749240378,0.40112542315135424,200
+olmo3_7b,real_trajectory_total_selection,direction_accuracy,0.43,0.36,0.5,200
+qwen2_5_32b,frozen_history_local_selection,MAE,0.1965912362930051,0.17158630803493088,0.22374569418075502,200
+qwen2_5_32b,frozen_history_local_selection,Spearman,0.08597314932873323,-0.062256871048867284,0.23311593576444845,200
+qwen2_5_32b,frozen_history_local_selection,direction_accuracy,0.405,0.34,0.475,200
+qwen2_5_32b,real_trajectory_total_selection,MAE,0.14621983928369928,0.12858298765847412,0.16445790254252812,200
+qwen2_5_32b,real_trajectory_total_selection,Spearman,0.23621090527263183,0.08894158698947122,0.3783359051509679,200
+qwen2_5_32b,real_trajectory_total_selection,direction_accuracy,0.465,0.395,0.535,200

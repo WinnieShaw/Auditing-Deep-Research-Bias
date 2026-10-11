@@ -1,0 +1,224 @@
+{
+  "cache_key": "812f8e1d82f41058f04dd7f10d886203547af051015fa5e62c18eba2730e66ed",
+  "key_material": {
+    "model_path": "<MODEL_DIR>/Qwen/Qwen2.5-32B-Instruct",
+    "model_revision": "9c6772f138ef9e5b3d1c18f2c87e451bbc01f5f1a4eabb36f9bf4f53829b903e",
+    "system_prompt": [
+      "You are a research assistant conducting research on the user's input topic. For context, today's date is Thu Sep 24, 2026.\n\n<Task>\nYour job is to use tools to gather information about the user's input topic.\nYou can use any of the tools provided to you to find resources that can help answer the research question. You can call these tools in series or in parallel, your research is conducted in a tool-calling loop.\n</Task>\n\n<Available Tools>\nYou have access to two main tools:\n1. **tavily_search**: For conducting web searches to gather information\n2. **think_tool**: For reflection and strategic planning during research\nFor this controlled study, tavily_search accesses a frozen evidence pool. Call it with exactly one query at a time. You must complete exactly 4 successful searches; formulate later queries after reading earlier returned passages.\n\n**CRITICAL: Use think_tool after each search to reflect on results and plan next steps. Do not call think_tool with the tavily_search or any other tools. It should be to reflect on the results of the search.**\n</Available Tools>\n\n<Instructions>\nThink like a human researcher with limited time. Follow these steps:\n\n1. **Read the question carefully** - What specific information does the user need?\n2. **Start with broader searches** - Use broad, comprehensive queries first\n3. **After each search, pause and assess** - Do I have enough to answer? What's still missing?\n4. **Execute narrower searches as you gather information** - Fill in the gaps\n5. **Stop when you can answer confidently** - Don't keep searching for perfection\n</Instructions>\n\n<Hard Limits>\n**Tool Call Budgets** (Prevent excessive searching):\n- **Simple queries**: Use 2-3 search tool calls maximum\n- **Complex queries**: Use up to 5 search tool calls maximum\n- **Always stop**: After 5 search tool calls if you cannot find the right sources\n\n**Stop Immediately When**:\n- You can answer the user's question comprehensively\n- You have 3+ relevant examples/sources for the question\n- Your last 2 searches returned similar information\n</Hard Limits>\n\n<Show Your Thinking>\nAfter each search tool call, use think_tool to analyze the results:\n- What key information did I find?\n- What's missing?\n- Do I have enough to answer the question comprehensively?\n- Should I search more or provide my answer?\n</Show Your Thinking>\n"
+    ],
+    "messages": [
+      {
+        "content": "You are a research assistant conducting research on the user's input topic. For context, today's date is Thu Sep 24, 2026.\n\n<Task>\nYour job is to use tools to gather information about the user's input topic.\nYou can use any of the tools provided to you to find resources that can help answer the research question. You can call these tools in series or in parallel, your research is conducted in a tool-calling loop.\n</Task>\n\n<Available Tools>\nYou have access to two main tools:\n1. **tavily_search**: For conducting web searches to gather information\n2. **think_tool**: For reflection and strategic planning during research\nFor this controlled study, tavily_search accesses a frozen evidence pool. Call it with exactly one query at a time. You must complete exactly 4 successful searches; formulate later queries after reading earlier returned passages.\n\n**CRITICAL: Use think_tool after each search to reflect on results and plan next steps. Do not call think_tool with the tavily_search or any other tools. It should be to reflect on the results of the search.**\n</Available Tools>\n\n<Instructions>\nThink like a human researcher with limited time. Follow these steps:\n\n1. **Read the question carefully** - What specific information does the user need?\n2. **Start with broader searches** - Use broad, comprehensive queries first\n3. **After each search, pause and assess** - Do I have enough to answer? What's still missing?\n4. **Execute narrower searches as you gather information** - Fill in the gaps\n5. **Stop when you can answer confidently** - Don't keep searching for perfection\n</Instructions>\n\n<Hard Limits>\n**Tool Call Budgets** (Prevent excessive searching):\n- **Simple queries**: Use 2-3 search tool calls maximum\n- **Complex queries**: Use up to 5 search tool calls maximum\n- **Always stop**: After 5 search tool calls if you cannot find the right sources\n\n**Stop Immediately When**:\n- You can answer the user's question comprehensively\n- You have 3+ relevant examples/sources for the question\n- Your last 2 searches returned similar information\n</Hard Limits>\n\n<Show Your Thinking>\nAfter each search tool call, use think_tool to analyze the results:\n- What key information did I find?\n- What's missing?\n- Do I have enough to answer the question comprehensively?\n- Should I search more or provide my answer?\n</Show Your Thinking>\n",
+        "role": "system"
+      },
+      {
+        "content": "Historical context of chess in sports: Research the history of chess as a competitive activity, including its recognition as a sport by various international organizations. Look for evidence of chess being included in major sporting events or considered for inclusion in the Olympics in the past. Sources should include official documents from international chess organizations, historical records, and reputable news articles.",
+        "role": "user"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-9b704018d98e22ce",
+            "function": {
+              "name": "tavily_search",
+              "arguments": "{\"queries\": [\"history of chess as a competitive activity and its recognition as a sport\"]}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "--- SOURCE 1: Evidence passage 941 ---\nURL: perspectrum://perspectrum_128_e941\nDOCUMENT ID: perspectrum_128_e941\n\nFULL EVIDENCE PASSAGE:\nSports are about the perfection of our bodies, and therefore the competitive aspect of sport should relate directly to that perfection. In the Fundamental Principles of Olympism in the Olympic Charter the first is “combining in a balanced whole the qualities of body, will and mind”.13 Although we value the mental battle between athletes, we find that kind of exertion secondary, and not the core of sport which is the physical aspect. Chess consists only of the mind and to a lesser extent the will. It does not matter how well you can move the pieces from one square to the other. Therefore, chess celebrates a different aspect of the human condition than the Olympics and sports as a whole do: it cannot be an Olympic sport.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-9b704018d98e22ce"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-8e6aff3757a23e26",
+            "function": {
+              "name": "think_tool",
+              "arguments": "{\"reflection\": \"The first search result does not provide the historical context of chess as a competitive activity or its recognition as a sport. Instead, it discusses why chess might not be considered a sport according to the principles of Olympism. I need to adjust my search to focus more directly on the historical context and recognition of chess as a competitive activity and its inclusion in major sporting events.\"}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "Reflection recorded: The first search result does not provide the historical context of chess as a competitive activity or its recognition as a sport. Instead, it discusses why chess might not be considered a sport according to the principles of Olympism. I need to adjust my search to focus more directly on the historical context and recognition of chess as a competitive activity and its inclusion in major sporting events.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-8e6aff3757a23e26"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-9ba928594c83eca7",
+            "function": {
+              "name": "tavily_search",
+              "arguments": "{\"queries\": [\"historical context of chess as a competitive activity and its inclusion in major sporting events\"]}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "--- SOURCE 2: Evidence passage 941 ---\nURL: perspectrum://perspectrum_128_e941\nDOCUMENT ID: perspectrum_128_e941\n\nFULL EVIDENCE PASSAGE:\nSports are about the perfection of our bodies, and therefore the competitive aspect of sport should relate directly to that perfection. In the Fundamental Principles of Olympism in the Olympic Charter the first is “combining in a balanced whole the qualities of body, will and mind”.13 Although we value the mental battle between athletes, we find that kind of exertion secondary, and not the core of sport which is the physical aspect. Chess consists only of the mind and to a lesser extent the will. It does not matter how well you can move the pieces from one square to the other. Therefore, chess celebrates a different aspect of the human condition than the Olympics and sports as a whole do: it cannot be an Olympic sport.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-9ba928594c83eca7"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-b5c4f5e3c8c602f6",
+            "function": {
+              "name": "think_tool",
+              "arguments": "{\"reflection\": \"The second search result is the same as the first one, which does not provide the historical context of chess as a competitive activity or its inclusion in major sporting events. I need to refine my search query to focus more specifically on the history of chess as a competitive activity and its recognition by international organizations.\"}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "Reflection recorded: The second search result is the same as the first one, which does not provide the historical context of chess as a competitive activity or its inclusion in major sporting events. I need to refine my search query to focus more specifically on the history of chess as a competitive activity and its recognition by international organizations.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-b5c4f5e3c8c602f6"
+      }
+    ],
+    "tool_schemas": [
+      {
+        "type": "function",
+        "function": {
+          "name": "tavily_search",
+          "description": "Search the frozen PERSPECTRUM candidate pool. Supply one adaptive query; one complete evidence passage is returned.",
+          "parameters": {
+            "properties": {
+              "queries": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "queries"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "think_tool",
+          "description": "Strategic reflection tool for research planning",
+          "parameters": {
+            "properties": {
+              "reflection": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "reflection"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "ResearchComplete",
+          "description": "Call this tool to indicate that the research is complete.",
+          "parameters": {
+            "properties": {},
+            "type": "object"
+          }
+        }
+      }
+    ],
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_tokens": 1024,
+    "request_seed": 2026092401,
+    "serialized_model_configuration": {
+      "id": [
+        "langchain",
+        "chat_models",
+        "openai",
+        "ChatOpenAI"
+      ],
+      "kwargs": {
+        "max_retries": 0,
+        "max_tokens": 1024,
+        "model_name": "Qwen2.5-32B-Instruct",
+        "openai_api_base": "http://127.0.0.1:8000/v1",
+        "openai_api_key": {
+          "id": [
+            "OPENAI_API_KEY"
+          ],
+          "lc": 1,
+          "type": "secret"
+        },
+        "openai_proxy": null,
+        "output_version": null,
+        "request_timeout": 180.0,
+        "seed": 2026092401,
+        "temperature": 0.0,
+        "top_p": 1.0
+      },
+      "lc": 1,
+      "name": "ChatOpenAI",
+      "type": "constructor"
+    },
+    "remaining_invocation_parameters": {
+      "stop": null
+    },
+    "canonical_request_token_ids_sha256": "43641722e074297e2f86007439dd9850eb4aeccf0bfb1eab6869f094f46baf09",
+    "canonical_request_token_count": 1820
+  },
+  "raw_generation_binary": "812f8e1d82f41058f04dd7f10d886203547af051015fa5e62c18eba2730e66ed.pkl",
+  "raw_generation_sha256": "cfa6b6388a5eea16d1d1b4b29dcf5f6ff07b296670f8b8a60ecd66bbe2f153dc",
+  "parsed_generation_structure": [
+    {
+      "text": "",
+      "generation_info": {
+        "finish_reason": "tool_calls",
+        "logprobs": null
+      },
+      "type": "ChatGeneration",
+      "message": {
+        "content": "",
+        "additional_kwargs": {
+          "refusal": null
+        },
+        "response_metadata": {
+          "token_usage": {
+            "completion_tokens": 34,
+            "prompt_tokens": 1696,
+            "total_tokens": 1730,
+            "completion_tokens_details": null,
+            "prompt_tokens_details": null
+          },
+          "model_provider": "openai",
+          "model_name": "Qwen2.5-32B-Instruct",
+          "system_fingerprint": null,
+          "id": "chatcmpl-ae50c971e0d1c558",
+          "finish_reason": "tool_calls",
+          "logprobs": null
+        },
+        "type": "ai",
+        "name": null,
+        "id": "lc_run--01a0d253-10bb-74c1-ac74-6893e9b2b848-0"
+      }
+    }
+  ],
+  "created_utc": "2026-09-24T07:30:55.405522+00:00"
+}

@@ -1,0 +1,262 @@
+{
+  "cache_key": "457ab79ed95cda18c3bf3ee59edf5a45eb78fd58cc0459ccfefc90ab58f104e5",
+  "key_material": {
+    "model_path": "<MODEL_DIR>/Qwen/Qwen2.5-32B-Instruct",
+    "model_revision": "9c6772f138ef9e5b3d1c18f2c87e451bbc01f5f1a4eabb36f9bf4f53829b903e",
+    "system_prompt": [
+      "You are a research assistant conducting research on the user's input topic. For context, today's date is Thu Sep 24, 2026.\n\n<Task>\nYour job is to use tools to gather information about the user's input topic.\nYou can use any of the tools provided to you to find resources that can help answer the research question. You can call these tools in series or in parallel, your research is conducted in a tool-calling loop.\n</Task>\n\n<Available Tools>\nYou have access to two main tools:\n1. **tavily_search**: For conducting web searches to gather information\n2. **think_tool**: For reflection and strategic planning during research\nFor this controlled study, tavily_search accesses a frozen evidence pool. Call it with exactly one query at a time. You must complete exactly 4 successful searches; formulate later queries after reading earlier returned passages.\n\n**CRITICAL: Use think_tool after each search to reflect on results and plan next steps. Do not call think_tool with the tavily_search or any other tools. It should be to reflect on the results of the search.**\n</Available Tools>\n\n<Instructions>\nThink like a human researcher with limited time. Follow these steps:\n\n1. **Read the question carefully** - What specific information does the user need?\n2. **Start with broader searches** - Use broad, comprehensive queries first\n3. **After each search, pause and assess** - Do I have enough to answer? What's still missing?\n4. **Execute narrower searches as you gather information** - Fill in the gaps\n5. **Stop when you can answer confidently** - Don't keep searching for perfection\n</Instructions>\n\n<Hard Limits>\n**Tool Call Budgets** (Prevent excessive searching):\n- **Simple queries**: Use 2-3 search tool calls maximum\n- **Complex queries**: Use up to 5 search tool calls maximum\n- **Always stop**: After 5 search tool calls if you cannot find the right sources\n\n**Stop Immediately When**:\n- You can answer the user's question comprehensively\n- You have 3+ relevant examples/sources for the question\n- Your last 2 searches returned similar information\n</Hard Limits>\n\n<Show Your Thinking>\nAfter each search tool call, use think_tool to analyze the results:\n- What key information did I find?\n- What's missing?\n- Do I have enough to answer the question comprehensively?\n- Should I search more or provide my answer?\n</Show Your Thinking>\n"
+    ],
+    "messages": [
+      {
+        "content": "You are a research assistant conducting research on the user's input topic. For context, today's date is Thu Sep 24, 2026.\n\n<Task>\nYour job is to use tools to gather information about the user's input topic.\nYou can use any of the tools provided to you to find resources that can help answer the research question. You can call these tools in series or in parallel, your research is conducted in a tool-calling loop.\n</Task>\n\n<Available Tools>\nYou have access to two main tools:\n1. **tavily_search**: For conducting web searches to gather information\n2. **think_tool**: For reflection and strategic planning during research\nFor this controlled study, tavily_search accesses a frozen evidence pool. Call it with exactly one query at a time. You must complete exactly 4 successful searches; formulate later queries after reading earlier returned passages.\n\n**CRITICAL: Use think_tool after each search to reflect on results and plan next steps. Do not call think_tool with the tavily_search or any other tools. It should be to reflect on the results of the search.**\n</Available Tools>\n\n<Instructions>\nThink like a human researcher with limited time. Follow these steps:\n\n1. **Read the question carefully** - What specific information does the user need?\n2. **Start with broader searches** - Use broad, comprehensive queries first\n3. **After each search, pause and assess** - Do I have enough to answer? What's still missing?\n4. **Execute narrower searches as you gather information** - Fill in the gaps\n5. **Stop when you can answer confidently** - Don't keep searching for perfection\n</Instructions>\n\n<Hard Limits>\n**Tool Call Budgets** (Prevent excessive searching):\n- **Simple queries**: Use 2-3 search tool calls maximum\n- **Complex queries**: Use up to 5 search tool calls maximum\n- **Always stop**: After 5 search tool calls if you cannot find the right sources\n\n**Stop Immediately When**:\n- You can answer the user's question comprehensively\n- You have 3+ relevant examples/sources for the question\n- Your last 2 searches returned similar information\n</Hard Limits>\n\n<Show Your Thinking>\nAfter each search tool call, use think_tool to analyze the results:\n- What key information did I find?\n- What's missing?\n- Do I have enough to answer the question comprehensively?\n- Should I search more or provide my answer?\n</Show Your Thinking>\n",
+        "role": "system"
+      },
+      {
+        "content": "Investigate the first piece of evidence supporting or undermining the claim that religious institutions, including churches, temples, mosques, and synagogues, should remain tax-exempt. Focus on official documents and academic papers that provide a detailed analysis of the financial impact of tax-exemption on religious institutions and the broader community. Consider the historical context and current legal framework surrounding tax-exempt status for religious organizations.",
+        "role": "user"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-904a5f79e5fcc4a3",
+            "function": {
+              "name": "tavily_search",
+              "arguments": "{\"queries\": [\"first evidence supporting or undermining tax-exemption for religious institutions\"]}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "--- SOURCE 1: Evidence passage 4629 ---\nURL: perspectrum://perspectrum_582_e4629\nDOCUMENT ID: perspectrum_582_e4629\n\nFULL EVIDENCE PASSAGE:\nThe average annual salary for senior pastors with congregations of 2,000 or more is $147,000, with some earning up to $400,000. In addition to the federal exemption on housing expenses enjoyed by these ministers, they often pay zero dollars in state property tax. Church leaders Creflo and Taffi Dollar of World Changers Church International had three tax-free parsonages: a million-dollar mansion in Atlanta, GA, a two-million-dollar mansion in Fayetteville, GA,  and a $2.5 million Manhattan apartment. Kenneth and Gloria Copeland, leaders of Kenneth Copeland Ministries in Fort Worth, TX, live in a church-owned, tax-free $6.2 million lakefront parsonage.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-904a5f79e5fcc4a3"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-9d91237552c40a8e",
+            "function": {
+              "name": "think_tool",
+              "arguments": "{\"reflection\": \"The evidence provided does not directly address the financial impact of tax-exemption on religious institutions and the broader community. Instead, it focuses on the tax benefits enjoyed by some high-profile religious leaders. This information could be used to argue against tax-exemption, as it highlights potential abuses of the system. However, it does not provide a comprehensive analysis of the financial impact of tax-exemption on religious institutions and the broader community. I should conduct a more focused search to find relevant official documents and academic papers.\"}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "Reflection recorded: The evidence provided does not directly address the financial impact of tax-exemption on religious institutions and the broader community. Instead, it focuses on the tax benefits enjoyed by some high-profile religious leaders. This information could be used to argue against tax-exemption, as it highlights potential abuses of the system. However, it does not provide a comprehensive analysis of the financial impact of tax-exemption on religious institutions and the broader community. I should conduct a more focused search to find relevant official documents and academic papers.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-9d91237552c40a8e"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-b901adcb230a5c2d",
+            "function": {
+              "name": "tavily_search",
+              "arguments": "{\"queries\": [\"official documents and academic papers on financial impact of tax-exemption for religious institutions\"]}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "--- SOURCE 2: Evidence passage 4615 ---\nURL: perspectrum://perspectrum_582_e4615\nDOCUMENT ID: perspectrum_582_e4615\n\nFULL EVIDENCE PASSAGE:\nA 2010 survey by the Hartford Institute for Religion Research found that congregations facing financial strain more than doubled to almost 20% in the past decade, with 5% of congregations unlikely to recover. If these churches were obliged to pay taxes, their existence would be threatened and government would thus be impeding religious expression.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-b901adcb230a5c2d"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-8915b869d6b188b4",
+            "function": {
+              "name": "think_tool",
+              "arguments": "{\"reflection\": \"This evidence provides insight into the financial strain faced by religious institutions and how tax-exemption supports their existence. However, it does not provide a detailed analysis of the financial impact of tax-exemption on the broader community. I should conduct another search to find more comprehensive information on this topic.\"}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "Reflection recorded: This evidence provides insight into the financial strain faced by religious institutions and how tax-exemption supports their existence. However, it does not provide a detailed analysis of the financial impact of tax-exemption on the broader community. I should conduct another search to find more comprehensive information on this topic.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-8915b869d6b188b4"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-97cc93a693e002b2",
+            "function": {
+              "name": "tavily_search",
+              "arguments": "{\"queries\": [\"academic papers on financial impact of tax-exemption for religious institutions on broader community\"]}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "--- SOURCE 3: Evidence passage 4613 ---\nURL: perspectrum://perspectrum_582_e4613\nDOCUMENT ID: perspectrum_582_e4613\n\nFULL EVIDENCE PASSAGE:\nDean M. Kelley, a leading proponent of religious freedom, explained that church members are already taxed on their individual incomes, so \"to tax them again for participation in voluntary organizations from which they derive no monetary gain would be 'double taxation' indeed, and would effectively serve to discourage them from devoting time, money, and energy to organizations which contribute to the up building of the fabric of democracy.\"",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-97cc93a693e002b2"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-ac0862f73cf847f6",
+            "function": {
+              "name": "think_tool",
+              "arguments": "{\"reflection\": \"This evidence provides an argument against double taxation and highlights the role of religious institutions in contributing to the fabric of democracy. However, it still does not provide a detailed analysis of the financial impact of tax-exemption on the broader community. I should conduct one more search to find more comprehensive information on this topic.\"}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "Reflection recorded: This evidence provides an argument against double taxation and highlights the role of religious institutions in contributing to the fabric of democracy. However, it still does not provide a detailed analysis of the financial impact of tax-exemption on the broader community. I should conduct one more search to find more comprehensive information on this topic.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-ac0862f73cf847f6"
+      }
+    ],
+    "tool_schemas": [
+      {
+        "type": "function",
+        "function": {
+          "name": "tavily_search",
+          "description": "Search the frozen PERSPECTRUM candidate pool. Supply one adaptive query; one complete evidence passage is returned.",
+          "parameters": {
+            "properties": {
+              "queries": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "queries"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "think_tool",
+          "description": "Strategic reflection tool for research planning",
+          "parameters": {
+            "properties": {
+              "reflection": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "reflection"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "ResearchComplete",
+          "description": "Call this tool to indicate that the research is complete.",
+          "parameters": {
+            "properties": {},
+            "type": "object"
+          }
+        }
+      }
+    ],
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_tokens": 1024,
+    "request_seed": 2026092403,
+    "serialized_model_configuration": {
+      "id": [
+        "langchain",
+        "chat_models",
+        "openai",
+        "ChatOpenAI"
+      ],
+      "kwargs": {
+        "max_retries": 0,
+        "max_tokens": 1024,
+        "model_name": "Qwen2.5-32B-Instruct",
+        "openai_api_base": "http://127.0.0.1:8000/v1",
+        "openai_api_key": {
+          "id": [
+            "OPENAI_API_KEY"
+          ],
+          "lc": 1,
+          "type": "secret"
+        },
+        "openai_proxy": null,
+        "output_version": null,
+        "request_timeout": 180.0,
+        "seed": 2026092403,
+        "temperature": 0.0,
+        "top_p": 1.0
+      },
+      "lc": 1,
+      "name": "ChatOpenAI",
+      "type": "constructor"
+    },
+    "remaining_invocation_parameters": {
+      "stop": null
+    },
+    "canonical_request_token_ids_sha256": "51172abefcbbb05af022746a93cdc0c63d9b9610a20d859d7963874b1845a56b",
+    "canonical_request_token_count": 2272
+  },
+  "raw_generation_binary": "457ab79ed95cda18c3bf3ee59edf5a45eb78fd58cc0459ccfefc90ab58f104e5.pkl",
+  "raw_generation_sha256": "4db4c5dcb8be9abf150b18491575a303b3be4a5ef2da602e492ee53a0c55571e",
+  "parsed_generation_structure": [
+    {
+      "text": "",
+      "generation_info": {
+        "finish_reason": "tool_calls",
+        "logprobs": null
+      },
+      "type": "ChatGeneration",
+      "message": {
+        "content": "",
+        "additional_kwargs": {
+          "refusal": null
+        },
+        "response_metadata": {
+          "token_usage": {
+            "completion_tokens": 38,
+            "prompt_tokens": 2043,
+            "total_tokens": 2081,
+            "completion_tokens_details": null,
+            "prompt_tokens_details": null
+          },
+          "model_provider": "openai",
+          "model_name": "Qwen2.5-32B-Instruct",
+          "system_fingerprint": null,
+          "id": "chatcmpl-815b005d1f83036e",
+          "finish_reason": "tool_calls",
+          "logprobs": null
+        },
+        "type": "ai",
+        "name": null,
+        "id": "lc_run--01a0d323-c4f5-7ab0-8a89-6a0aa213433f-0"
+      }
+    }
+  ],
+  "created_utc": "2026-09-24T11:18:53.153776+00:00"
+}

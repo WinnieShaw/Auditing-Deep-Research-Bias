@@ -1,0 +1,49 @@
+{
+  "new_simple_baseline_development_pool": {
+    "cells": {
+      "qwen2_5_32b": 600,
+      "olmo3_7b": 600
+    },
+    "source_tasks": {
+      "qwen2_5_32b": 200,
+      "olmo3_7b": 200
+    },
+    "setting": "v1 fixed_horizon + uniform controller, four rounds, three ranking conditions",
+    "outcomes_used_for_alpha_tuning": true
+  },
+  "table1_test_pool": {
+    "cells": {
+      "qwen2_5_32b": 600,
+      "olmo3_7b": 600
+    },
+    "source_tasks": {
+      "qwen2_5_32b": 200,
+      "olmo3_7b": 200
+    },
+    "setting": "v2 fixed_horizon + uniform controller, four rounds, one replicate, three ranking conditions"
+  },
+  "new_baseline_v1_vs_table1_v2": {
+    "left_documents": 3307,
+    "right_documents": 3169,
+    "source_review_id_overlap": 0,
+    "namespaced_document_id_overlap": 0,
+    "underlying_pmid_overlap": 65,
+    "left_review_count": 200,
+    "right_review_count": 200
+  },
+  "initial_nuisance_development_vs_table1_v2": {
+    "left_documents": 6657,
+    "right_documents": 3169,
+    "source_review_id_overlap": 0,
+    "namespaced_document_id_overlap": 0,
+    "underlying_pmid_overlap": 180,
+    "left_review_count": 400,
+    "right_review_count": 200
+  },
+  "existing_main_cess_development_evidence": {
+    "nuisance_outcome_regression_and_residual_second_moments": "initial 400-review ms2_external_v1/development pool; loaded by fit_prospective_models in scripts/run_ms2_sequential_confirmatory.py",
+    "global_shrinkage_coefficients": "model-level 0.5484175425465773 (Qwen) and 0.5649384082205048 (OLMo); v2 report states these were derived from confirmation-v1 design information without reading v1 outcomes",
+    "design_information_cohort": "sequential_confirmatory_v1; its review/document overlap with v2 is recorded above",
+    "silent_retraining_or_replacement": false
+  }
+}

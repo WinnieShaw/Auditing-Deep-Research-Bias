@@ -1,0 +1,167 @@
+{
+  "cache_key": "72ded2e787365d3251ac87e119aee6d0d925c7f7bafb519ff63a2e033541f3bb",
+  "key_material": {
+    "model_path": "<MODEL_DIR>/Qwen/Qwen2.5-32B-Instruct",
+    "model_revision": "9c6772f138ef9e5b3d1c18f2c87e451bbc01f5f1a4eabb36f9bf4f53829b903e",
+    "system_prompt": [
+      "You are a research assistant conducting research on the user's input topic. For context, today's date is Thu Sep 24, 2026.\n\n<Task>\nYour job is to use tools to gather information about the user's input topic.\nYou can use any of the tools provided to you to find resources that can help answer the research question. You can call these tools in series or in parallel, your research is conducted in a tool-calling loop.\n</Task>\n\n<Available Tools>\nYou have access to two main tools:\n1. **tavily_search**: For conducting web searches to gather information\n2. **think_tool**: For reflection and strategic planning during research\nFor this controlled study, tavily_search accesses a frozen evidence pool. Call it with exactly one query at a time. You must complete exactly 4 successful searches; formulate later queries after reading earlier returned passages.\n\n**CRITICAL: Use think_tool after each search to reflect on results and plan next steps. Do not call think_tool with the tavily_search or any other tools. It should be to reflect on the results of the search.**\n</Available Tools>\n\n<Instructions>\nThink like a human researcher with limited time. Follow these steps:\n\n1. **Read the question carefully** - What specific information does the user need?\n2. **Start with broader searches** - Use broad, comprehensive queries first\n3. **After each search, pause and assess** - Do I have enough to answer? What's still missing?\n4. **Execute narrower searches as you gather information** - Fill in the gaps\n5. **Stop when you can answer confidently** - Don't keep searching for perfection\n</Instructions>\n\n<Hard Limits>\n**Tool Call Budgets** (Prevent excessive searching):\n- **Simple queries**: Use 2-3 search tool calls maximum\n- **Complex queries**: Use up to 5 search tool calls maximum\n- **Always stop**: After 5 search tool calls if you cannot find the right sources\n\n**Stop Immediately When**:\n- You can answer the user's question comprehensively\n- You have 3+ relevant examples/sources for the question\n- Your last 2 searches returned similar information\n</Hard Limits>\n\n<Show Your Thinking>\nAfter each search tool call, use think_tool to analyze the results:\n- What key information did I find?\n- What's missing?\n- Do I have enough to answer the question comprehensively?\n- Should I search more or provide my answer?\n</Show Your Thinking>\n"
+    ],
+    "messages": [
+      {
+        "content": "You are a research assistant conducting research on the user's input topic. For context, today's date is Thu Sep 24, 2026.\n\n<Task>\nYour job is to use tools to gather information about the user's input topic.\nYou can use any of the tools provided to you to find resources that can help answer the research question. You can call these tools in series or in parallel, your research is conducted in a tool-calling loop.\n</Task>\n\n<Available Tools>\nYou have access to two main tools:\n1. **tavily_search**: For conducting web searches to gather information\n2. **think_tool**: For reflection and strategic planning during research\nFor this controlled study, tavily_search accesses a frozen evidence pool. Call it with exactly one query at a time. You must complete exactly 4 successful searches; formulate later queries after reading earlier returned passages.\n\n**CRITICAL: Use think_tool after each search to reflect on results and plan next steps. Do not call think_tool with the tavily_search or any other tools. It should be to reflect on the results of the search.**\n</Available Tools>\n\n<Instructions>\nThink like a human researcher with limited time. Follow these steps:\n\n1. **Read the question carefully** - What specific information does the user need?\n2. **Start with broader searches** - Use broad, comprehensive queries first\n3. **After each search, pause and assess** - Do I have enough to answer? What's still missing?\n4. **Execute narrower searches as you gather information** - Fill in the gaps\n5. **Stop when you can answer confidently** - Don't keep searching for perfection\n</Instructions>\n\n<Hard Limits>\n**Tool Call Budgets** (Prevent excessive searching):\n- **Simple queries**: Use 2-3 search tool calls maximum\n- **Complex queries**: Use up to 5 search tool calls maximum\n- **Always stop**: After 5 search tool calls if you cannot find the right sources\n\n**Stop Immediately When**:\n- You can answer the user's question comprehensively\n- You have 3+ relevant examples/sources for the question\n- Your last 2 searches returned similar information\n</Hard Limits>\n\n<Show Your Thinking>\nAfter each search tool call, use think_tool to analyze the results:\n- What key information did I find?\n- What's missing?\n- Do I have enough to answer the question comprehensively?\n- Should I search more or provide my answer?\n</Show Your Thinking>\n",
+        "role": "system"
+      },
+      {
+        "content": "Theoretical foundations of transparency and security. Explore the academic and theoretical perspectives on the relationship between transparency and security. Include discussions on how transparency can enhance or undermine security, and the conditions under which transparency is considered necessary for security. Prioritize original papers, official journal publications, or other primary sources to ensure the highest level of credibility and depth.",
+        "role": "user"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-a54f5e20d061987a",
+            "function": {
+              "name": "tavily_search",
+              "arguments": "{\"queries\": [\"theoretical foundations of transparency and security in academic literature\"]}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "--- SOURCE 1: Evidence passage 7843 ---\nURL: perspectrum://perspectrum_68_e7843\nDOCUMENT ID: perspectrum_68_e7843\n\nFULL EVIDENCE PASSAGE:\nWhat goes on during Security Council discussions is too shrouded in secrecy. For people to know that important issues are really being addressed more transparency would be welcome. It is hypocritical for the UN to preach government transparency and freedom of the press worldwide but not allow it when it comes to the Security Council. The press are essential to the work of the UN as they can help to highlight areas where they may need to step in, as well as highlight the good work that the UN are doing. The emphasis on secrecy just makes it seem like the five permanent members have way too much control over proceedings and arouses suspicion about what they may be talking about that must be kept so top secret. As the UN representative for Sudan said: Sudanese mission 'Every day, the council is speaking about the need to lift press restrictions in certain countries of their choice. They themselves are not delivering what they are calling on others to do.'",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-a54f5e20d061987a"
+      }
+    ],
+    "tool_schemas": [
+      {
+        "type": "function",
+        "function": {
+          "name": "tavily_search",
+          "description": "Search the frozen PERSPECTRUM candidate pool. Supply one adaptive query; one complete evidence passage is returned.",
+          "parameters": {
+            "properties": {
+              "queries": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              }
+            },
+            "required": [
+              "queries"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "think_tool",
+          "description": "Strategic reflection tool for research planning",
+          "parameters": {
+            "properties": {
+              "reflection": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "reflection"
+            ],
+            "type": "object"
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "ResearchComplete",
+          "description": "Call this tool to indicate that the research is complete.",
+          "parameters": {
+            "properties": {},
+            "type": "object"
+          }
+        }
+      }
+    ],
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_tokens": 1024,
+    "request_seed": 2026092403,
+    "serialized_model_configuration": {
+      "id": [
+        "langchain",
+        "chat_models",
+        "openai",
+        "ChatOpenAI"
+      ],
+      "kwargs": {
+        "max_retries": 0,
+        "max_tokens": 1024,
+        "model_name": "Qwen2.5-32B-Instruct",
+        "openai_api_base": "http://127.0.0.1:8000/v1",
+        "openai_api_key": {
+          "id": [
+            "OPENAI_API_KEY"
+          ],
+          "lc": 1,
+          "type": "secret"
+        },
+        "openai_proxy": null,
+        "output_version": null,
+        "request_timeout": 180.0,
+        "seed": 2026092403,
+        "temperature": 0.0,
+        "top_p": 1.0
+      },
+      "lc": 1,
+      "name": "ChatOpenAI",
+      "type": "constructor"
+    },
+    "remaining_invocation_parameters": {
+      "stop": null
+    },
+    "canonical_request_token_ids_sha256": "0b79923d8f9f39fa0f103398235c4d5f4d35699fd6787751c536534ea124cb9f",
+    "canonical_request_token_count": 1114
+  },
+  "raw_generation_binary": "72ded2e787365d3251ac87e119aee6d0d925c7f7bafb519ff63a2e033541f3bb.pkl",
+  "raw_generation_sha256": "67c09e9d095438b7b205d43e8a6640745f8c2c210b4120f02b5774d7efac664d",
+  "parsed_generation_structure": [
+    {
+      "text": "",
+      "generation_info": {
+        "finish_reason": "tool_calls",
+        "logprobs": null
+      },
+      "type": "ChatGeneration",
+      "message": {
+        "content": "",
+        "additional_kwargs": {
+          "refusal": null
+        },
+        "response_metadata": {
+          "token_usage": {
+            "completion_tokens": 88,
+            "prompt_tokens": 1138,
+            "total_tokens": 1226,
+            "completion_tokens_details": null,
+            "prompt_tokens_details": null
+          },
+          "model_provider": "openai",
+          "model_name": "Qwen2.5-32B-Instruct",
+          "system_fingerprint": null,
+          "id": "chatcmpl-bc1f2f1b5604417c",
+          "finish_reason": "tool_calls",
+          "logprobs": null
+        },
+        "type": "ai",
+        "name": null,
+        "id": "lc_run--01a0d325-47ec-7c41-a478-5828b73ce6c5-0"
+      }
+    }
+  ],
+  "created_utc": "2026-09-24T11:20:33.835947+00:00"
+}

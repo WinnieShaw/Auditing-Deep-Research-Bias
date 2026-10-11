@@ -1,0 +1,234 @@
+{
+  "cache_key": "12b9dcaf58a3b0efb5edabad920a9a977808a9d6245f31fe53a2a44a88959c15",
+  "key_material": {
+    "model_path": "<MODEL_DIR>/Qwen/Qwen2.5-32B-Instruct",
+    "model_revision": "9c6772f138ef9e5b3d1c18f2c87e451bbc01f5f1a4eabb36f9bf4f53829b903e",
+    "system_prompt": [
+      "You are a research assistant that has conducted research on a topic by calling several tools and web searches. Your job is now to clean up the findings, but preserve all of the relevant statements and information that the researcher has gathered. For context, today's date is Thu Sep 24, 2026.\n\n<Task>\nYou need to clean up information gathered from tool calls and web searches in the existing messages.\nAll relevant information should be repeated and rewritten verbatim, but in a cleaner format.\nThe purpose of this step is just to remove any obviously irrelevant or duplicative information.\nFor example, if three sources all say \"X\", you could say \"These three sources all stated X\".\nOnly these fully comprehensive cleaned findings are going to be returned to the user, so it's crucial that you don't lose any information from the raw messages.\n</Task>\n\n<Guidelines>\n1. Your output findings should be fully comprehensive and include ALL of the information and sources that the researcher has gathered from tool calls and web searches. It is expected that you repeat key information verbatim.\n2. This report can be as long as necessary to return ALL of the information that the researcher has gathered.\n3. In your report, you should return inline citations for each source that the researcher found.\n4. You should include a \"Sources\" section at the end of the report that lists all of the sources the researcher found with corresponding citations, cited against statements in the report.\n5. Make sure to include ALL of the sources that the researcher gathered in the report, and how they were used to answer the question!\n6. It's really important not to lose any sources. A later LLM will be used to merge this report with others, so having all of the sources is critical.\n</Guidelines>\n\n<Output Format>\nThe report should be structured like this:\n**List of Queries and Tool Calls Made**\n**Fully Comprehensive Findings**\n**List of All Relevant Sources (with citations in the report)**\n</Output Format>\n\n<Citation Rules>\n- Assign each unique URL a single citation number in your text\n- End with ### Sources that lists each source with corresponding numbers\n- IMPORTANT: Number sources sequentially without gaps (1,2,3,4...) in the final list regardless of which sources you choose\n- Example format:\n  [1] Source Title: URL\n  [2] Source Title: URL\n</Citation Rules>\n\nCritical Reminder: It is extremely important that any information that is even remotely relevant to the user's research topic is preserved verbatim (e.g. don't rewrite it, don't summarize it, don't paraphrase it).\n"
+    ],
+    "messages": [
+      {
+        "content": "You are a research assistant that has conducted research on a topic by calling several tools and web searches. Your job is now to clean up the findings, but preserve all of the relevant statements and information that the researcher has gathered. For context, today's date is Thu Sep 24, 2026.\n\n<Task>\nYou need to clean up information gathered from tool calls and web searches in the existing messages.\nAll relevant information should be repeated and rewritten verbatim, but in a cleaner format.\nThe purpose of this step is just to remove any obviously irrelevant or duplicative information.\nFor example, if three sources all say \"X\", you could say \"These three sources all stated X\".\nOnly these fully comprehensive cleaned findings are going to be returned to the user, so it's crucial that you don't lose any information from the raw messages.\n</Task>\n\n<Guidelines>\n1. Your output findings should be fully comprehensive and include ALL of the information and sources that the researcher has gathered from tool calls and web searches. It is expected that you repeat key information verbatim.\n2. This report can be as long as necessary to return ALL of the information that the researcher has gathered.\n3. In your report, you should return inline citations for each source that the researcher found.\n4. You should include a \"Sources\" section at the end of the report that lists all of the sources the researcher found with corresponding citations, cited against statements in the report.\n5. Make sure to include ALL of the sources that the researcher gathered in the report, and how they were used to answer the question!\n6. It's really important not to lose any sources. A later LLM will be used to merge this report with others, so having all of the sources is critical.\n</Guidelines>\n\n<Output Format>\nThe report should be structured like this:\n**List of Queries and Tool Calls Made**\n**Fully Comprehensive Findings**\n**List of All Relevant Sources (with citations in the report)**\n</Output Format>\n\n<Citation Rules>\n- Assign each unique URL a single citation number in your text\n- End with ### Sources that lists each source with corresponding numbers\n- IMPORTANT: Number sources sequentially without gaps (1,2,3,4...) in the final list regardless of which sources you choose\n- Example format:\n  [1] Source Title: URL\n  [2] Source Title: URL\n</Citation Rules>\n\nCritical Reminder: It is extremely important that any information that is even remotely relevant to the user's research topic is preserved verbatim (e.g. don't rewrite it, don't summarize it, don't paraphrase it).\n",
+        "role": "system"
+      },
+      {
+        "content": "Historical context and precedents of employing mercenaries. This research should cover the historical use of mercenaries in various conflicts and regions, focusing on the outcomes and impacts of their employment. The sources should include historical documents, academic papers, and reputable historical analyses. The research should provide a detailed overview of the historical context, including the reasons for employing mercenaries, the effectiveness of their use, and any notable successes or failures.",
+        "role": "user"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-b03230c4ccb97605",
+            "function": {
+              "name": "tavily_search",
+              "arguments": "{\"queries\": [\"historical use of mercenaries in various conflicts and regions\"]}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "--- SOURCE 1: Evidence passage 6689 ---\nURL: perspectrum://perspectrum_214_e6689\nDOCUMENT ID: perspectrum_214_e6689\n\nFULL EVIDENCE PASSAGE:\nPMCs in most cases are not used by the government that hired them to fight for that country. They are generally used for more menial tasks such as doing laundry, washing dishes, or preparing food. And with this being the case the lack of accountability will not be an issue. The governments that hire the PMCs do not have to work about the PMC turning on them or killing civilians etc. The governments tend to trust their own troops more than the PMC because of the preconceptions that the leaders usually have so they use the PMC to provide services that support their own troops which are on the front lines.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-b03230c4ccb97605"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-84e2614e5894ce3d",
+            "function": {
+              "name": "think_tool",
+              "arguments": "{\"reflection\": \"The first search result did not provide the broad historical context and precedents of employing mercenaries that I was looking for. Instead, it focused on the role of Private Military Companies (PMCs) in supporting troops. I need to refine my search to focus more on historical examples and the outcomes of employing mercenaries.\"}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "Reflection recorded: The first search result did not provide the broad historical context and precedents of employing mercenaries that I was looking for. Instead, it focused on the role of Private Military Companies (PMCs) in supporting troops. I need to refine my search to focus more on historical examples and the outcomes of employing mercenaries.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-84e2614e5894ce3d"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-8c8572be89fbed4e",
+            "function": {
+              "name": "tavily_search",
+              "arguments": "{\"queries\": [\"historical examples of mercenaries and their impacts\"]}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "--- SOURCE 2: Evidence passage 1584 ---\nURL: perspectrum://perspectrum_214_e1584\nDOCUMENT ID: perspectrum_214_e1584\n\nFULL EVIDENCE PASSAGE:\nMercenaries often arouse less hostility amongst civilians than soldiers fighting for national armies. In ethnic conflict they are perceived as less partisan. The fact that civilians to some extent do not connect mercenaries with a particular ideological cause, invasion or civil war makes them ideal for protecting safe areas and policing reconstruction projects. For example, PMC Global Risk Strategies successfully guarded the Green Zone in Baghdad, the sealed off section inhabited by coalition staff. As they are mercenaries they can be fighting for the national or local government of where their mission even if they have a different paymaster.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-8c8572be89fbed4e"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-a923611a0a999efb",
+            "function": {
+              "name": "think_tool",
+              "arguments": "{\"reflection\": \"The second search result provides some historical context on the use of mercenaries, particularly in ethnic conflicts and their role in protecting safe areas. However, it still lacks detailed historical examples and the broader impacts of employing mercenaries. I should refine my search to focus on specific historical conflicts and the outcomes of using mercenaries in those conflicts.\"}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "Reflection recorded: The second search result provides some historical context on the use of mercenaries, particularly in ethnic conflicts and their role in protecting safe areas. However, it still lacks detailed historical examples and the broader impacts of employing mercenaries. I should refine my search to focus on specific historical conflicts and the outcomes of using mercenaries in those conflicts.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-a923611a0a999efb"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-bec84ddbc7f32061",
+            "function": {
+              "name": "tavily_search",
+              "arguments": "{\"queries\": [\"specific historical conflicts involving mercenaries and their outcomes\"]}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "--- SOURCE 3: Evidence passage 2476 ---\nURL: perspectrum://perspectrum_214_e2476\nDOCUMENT ID: perspectrum_214_e2476\n\nFULL EVIDENCE PASSAGE:\nPrivate Military Companies (PMCs) are independent, registered, corporate actors who have risen in prominence and replaced mercenaries in their security function. PMCs are different to mercenaries in the sense that mercenaries will fight for the highest bidder. PMCs on the other hand will only work for legitimate governments and intergovernmental organisations such as the UN1. Their main roles include; support services, logical support, humanitarian support and the upholding of law and order and defensive military action2. PMC activity has seen corporations operating on behalf of the Somalian government training coast guards to deal with the threat of piracy which peaked in 20093. The legal status of PMCs, compared with mercenaries, makes them a preferable choice for the aforementioned tasks reducing the prominence of illegal hired guns.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-bec84ddbc7f32061"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-a9f92e3a8cbc6b94",
+            "function": {
+              "name": "think_tool",
+              "arguments": "{\"reflection\": \"The third search result discusses the role of Private Military Companies (PMCs) in modern times and their legal status compared to mercenaries. While it provides some context, it does not offer the historical examples and outcomes of employing mercenaries that I am looking for. I need to focus more on historical conflicts and the specific impacts of mercenaries in those conflicts.\"}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "Reflection recorded: The third search result discusses the role of Private Military Companies (PMCs) in modern times and their legal status compared to mercenaries. While it provides some context, it does not offer the historical examples and outcomes of employing mercenaries that I am looking for. I need to focus more on historical conflicts and the specific impacts of mercenaries in those conflicts.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-a9f92e3a8cbc6b94"
+      },
+      {
+        "content": null,
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "type": "function",
+            "id": "chatcmpl-tool-a7356fc9402adf4d",
+            "function": {
+              "name": "tavily_search",
+              "arguments": "{\"queries\": [\"historical conflicts with mercenaries and their specific impacts\"]}"
+            }
+          }
+        ]
+      },
+      {
+        "content": "--- SOURCE 4: Evidence passage 1586 ---\nURL: perspectrum://perspectrum_214_e1586\nDOCUMENT ID: perspectrum_214_e1586\n\nFULL EVIDENCE PASSAGE:\nCurrently mercenary work as a profession is not regulated by law, which allows the corruption and lack of guaranteed quality, as well as the problems of accountability to remain problematic. Regulating PMCs encourage a safer, professionalised security sector which can be standardised and controlled. Governments would then legislate, regulate and moderate the use of such forces rather than provide them outright. PMCs today are legitimate businesses, much of their work has nothing to do with fighting and killing MPRI for example \"shipped more than $900,000,000 worth of donated food and medical supplies to the newly independent states of the former Soviet Union over a five year period”. These companies are already placing greater emphasis on having a good reputation and are increasingly transparent so many companies would welcome regulation.",
+        "role": "tool",
+        "tool_call_id": "chatcmpl-tool-a7356fc9402adf4d"
+      },
+      {
+        "content": "All above messages are about research conducted by an AI Researcher. Please clean up these findings.\n\nDO NOT summarize the information. I want the raw information returned, just in a cleaner format. Make sure all relevant information is preserved - you can rewrite findings verbatim.",
+        "role": "user"
+      }
+    ],
+    "tool_schemas": [],
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_tokens": 1024,
+    "request_seed": 2026092403,
+    "serialized_model_configuration": {
+      "id": [
+        "langchain",
+        "chat_models",
+        "openai",
+        "ChatOpenAI"
+      ],
+      "kwargs": {
+        "max_retries": 0,
+        "max_tokens": 1024,
+        "model_name": "Qwen2.5-32B-Instruct",
+        "openai_api_base": "http://127.0.0.1:8000/v1",
+        "openai_api_key": {
+          "id": [
+            "OPENAI_API_KEY"
+          ],
+          "lc": 1,
+          "type": "secret"
+        },
+        "openai_proxy": null,
+        "output_version": null,
+        "request_timeout": 180.0,
+        "seed": 2026092403,
+        "temperature": 0.0,
+        "top_p": 1.0
+      },
+      "lc": 1,
+      "name": "ChatOpenAI",
+      "type": "constructor"
+    },
+    "remaining_invocation_parameters": {
+      "stop": null
+    },
+    "canonical_request_token_ids_sha256": "b1b73ce0f4f2c022e315917f4988119785b6b84c079d171d99181012f465c96e",
+    "canonical_request_token_count": 2524
+  },
+  "raw_generation_binary": "12b9dcaf58a3b0efb5edabad920a9a977808a9d6245f31fe53a2a44a88959c15.pkl",
+  "raw_generation_sha256": "41704b24008ed3355e5e3f371f1fbc4291c6509a7546136eac9d6c245b383253",
+  "parsed_generation_structure": [
+    {
+      "text": "**List of Queries and Tool Calls Made**\n1. Historical use of mercenaries in various conflicts and regions\n2. Historical examples of mercenaries and their impacts\n3. Specific historical conflicts involving mercenaries and their outcomes\n4. Historical conflicts with mercenaries and their specific impacts\n\n**Fully Comprehensive Findings**\n\n1. **Mercenaries in Ethnic Conflicts and Their Role in Protecting Safe Areas** [2]\n   - Mercenaries often arouse less hostility amongst civilians than soldiers fighting for national armies.\n   - In ethnic conflicts, they are perceived as less partisan.\n   - Civilians do not connect mercenaries with a particular ideological cause, invasion, or civil war, making them ideal for protecting safe areas and policing reconstruction projects.\n   - Example: PMC Global Risk Strategies successfully guarded the Green Zone in Baghdad, the sealed-off section inhabited by coalition staff.\n\n2. **Private Military Companies (PMCs) vs. Mercenaries** [3]\n   - PMCs are independent, registered, corporate actors who have risen in prominence and replaced mercenaries in their security function.\n   - PMCs will only work for legitimate governments and intergovernmental organizations such as the UN.\n   - Their main roles include support services, logistical support, humanitarian support, and the upholding of law and order and defensive military action.\n   - Example: Corporations operating on behalf of the Somalian government trained coast guards to deal with the threat of piracy, which peaked in 2009.\n   - The legal status of PMCs, compared with mercenaries, makes them a preferable choice for the aforementioned tasks, reducing the prominence of illegal hired guns.\n\n3. **Regulation of Mercenaries and PMCs** [4]\n   - Currently, mercenary work as a profession is not regulated by law, which allows for corruption and lack of guaranteed quality, as well as problems of accountability.\n   - Regulating PMCs encourages a safer, professionalized security sector that can be standardized and controlled.\n   - Governments would legislate, regulate, and moderate the use of such forces rather than provide them outright.\n   - PMCs today are legitimate businesses, much of their work has nothing to do with fighting and killing.\n   - Example: MPRI shipped more than $900,000,000 worth of donated food and medical supplies to the newly independent states of the former Soviet Union over a five-year period.\n   - These companies are increasingly transparent and place greater emphasis on having a good reputation, welcoming regulation.\n\n4. **Role of PMCs in Menial Tasks** [1]\n   - PMCs in most cases are not used by the government that hired them to fight for that country.\n   - They are generally used for menial tasks such as doing laundry, washing dishes, or preparing food.\n   - The lack of accountability is not an issue in these roles.\n   - Governments tend to trust their own troops more than the PMC because of preconceptions leaders usually have, so they use the PMC to provide services that support their own troops on the front lines.\n\n**List of All Relevant Sources (with citations in the report)**\n[1] Role of PMCs in Menial Tasks: perspectrum://perspectrum_214_e6689\n[2] Mercenaries in Ethnic Conflicts and Their Role in Protecting Safe Areas: perspectrum://perspectrum_214_e1584\n[3] Private Military Companies (PMCs) vs. Mercenaries: perspectrum://perspectrum_214_e2476\n[4] Regulation of Mercenaries and PMCs: perspectrum://perspectrum_214_e1586",
+      "generation_info": {
+        "finish_reason": "stop",
+        "logprobs": null
+      },
+      "type": "ChatGeneration",
+      "message": {
+        "content": "**List of Queries and Tool Calls Made**\n1. Historical use of mercenaries in various conflicts and regions\n2. Historical examples of mercenaries and their impacts\n3. Specific historical conflicts involving mercenaries and their outcomes\n4. Historical conflicts with mercenaries and their specific impacts\n\n**Fully Comprehensive Findings**\n\n1. **Mercenaries in Ethnic Conflicts and Their Role in Protecting Safe Areas** [2]\n   - Mercenaries often arouse less hostility amongst civilians than soldiers fighting for national armies.\n   - In ethnic conflicts, they are perceived as less partisan.\n   - Civilians do not connect mercenaries with a particular ideological cause, invasion, or civil war, making them ideal for protecting safe areas and policing reconstruction projects.\n   - Example: PMC Global Risk Strategies successfully guarded the Green Zone in Baghdad, the sealed-off section inhabited by coalition staff.\n\n2. **Private Military Companies (PMCs) vs. Mercenaries** [3]\n   - PMCs are independent, registered, corporate actors who have risen in prominence and replaced mercenaries in their security function.\n   - PMCs will only work for legitimate governments and intergovernmental organizations such as the UN.\n   - Their main roles include support services, logistical support, humanitarian support, and the upholding of law and order and defensive military action.\n   - Example: Corporations operating on behalf of the Somalian government trained coast guards to deal with the threat of piracy, which peaked in 2009.\n   - The legal status of PMCs, compared with mercenaries, makes them a preferable choice for the aforementioned tasks, reducing the prominence of illegal hired guns.\n\n3. **Regulation of Mercenaries and PMCs** [4]\n   - Currently, mercenary work as a profession is not regulated by law, which allows for corruption and lack of guaranteed quality, as well as problems of accountability.\n   - Regulating PMCs encourages a safer, professionalized security sector that can be standardized and controlled.\n   - Governments would legislate, regulate, and moderate the use of such forces rather than provide them outright.\n   - PMCs today are legitimate businesses, much of their work has nothing to do with fighting and killing.\n   - Example: MPRI shipped more than $900,000,000 worth of donated food and medical supplies to the newly independent states of the former Soviet Union over a five-year period.\n   - These companies are increasingly transparent and place greater emphasis on having a good reputation, welcoming regulation.\n\n4. **Role of PMCs in Menial Tasks** [1]\n   - PMCs in most cases are not used by the government that hired them to fight for that country.\n   - They are generally used for menial tasks such as doing laundry, washing dishes, or preparing food.\n   - The lack of accountability is not an issue in these roles.\n   - Governments tend to trust their own troops more than the PMC because of preconceptions leaders usually have, so they use the PMC to provide services that support their own troops on the front lines.\n\n**List of All Relevant Sources (with citations in the report)**\n[1] Role of PMCs in Menial Tasks: perspectrum://perspectrum_214_e6689\n[2] Mercenaries in Ethnic Conflicts and Their Role in Protecting Safe Areas: perspectrum://perspectrum_214_e1584\n[3] Private Military Companies (PMCs) vs. Mercenaries: perspectrum://perspectrum_214_e2476\n[4] Regulation of Mercenaries and PMCs: perspectrum://perspectrum_214_e1586",
+        "additional_kwargs": {
+          "refusal": null
+        },
+        "response_metadata": {
+          "token_usage": {
+            "completion_tokens": 743,
+            "prompt_tokens": 2138,
+            "total_tokens": 2881,
+            "completion_tokens_details": null,
+            "prompt_tokens_details": null
+          },
+          "model_provider": "openai",
+          "model_name": "Qwen2.5-32B-Instruct",
+          "system_fingerprint": null,
+          "id": "chatcmpl-86269f53bacdedf9",
+          "finish_reason": "stop",
+          "logprobs": null
+        },
+        "type": "ai",
+        "name": null,
+        "id": "lc_run--01a0d2f7-7b1d-7503-a952-fe950264954e-0"
+      }
+    }
+  ],
+  "created_utc": "2026-09-24T10:30:53.660710+00:00"
+}

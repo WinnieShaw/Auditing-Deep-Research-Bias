@@ -1,0 +1,52 @@
+protocol_version: perspectrum-query-v1
+seed: 2026091907
+scope: strict_visibility_cross_domain_llm_query_diagnostic
+development_data: evidence_selection_benchmark/data/perspectrum_nonmedical_v1/development
+holdout_data: evidence_selection_benchmark/data/perspectrum_nonmedical_v1/holdout
+development_summary: protocol/perspectrum_nonmedical_development_constants_v1.json
+method_lock: protocol/perspectrum_query_method_lock_v1.json
+method_lock_sha256: 287743d82ba34f3dcaf944c6f998ca192de2e7bba202cca0401fd5c1c40c3602
+visible_scores:
+  qwen2_5_32b: evidence_selection_benchmark/features/perspectrum_nonmedical_v1/qwen2_5_32b_visible_scores.jsonl
+  llama3_3_70b: evidence_selection_benchmark/features/perspectrum_nonmedical_v1/llama3_3_70b_visible_scores.jsonl
+models:
+  qwen2_5_32b:
+    model_path: <MODEL_DIR>/Qwen2.5-32B-Instruct
+  llama3_3_70b:
+    model_path: <MODEL_DIR>/LLM-Research/Llama-3.3-70B-Instruct
+split:
+  expected_development_topics: 267
+  expected_holdout_topics: 36
+nuisance_model:
+  tfidf_max_features: 12000
+search:
+  rank_conditions: [neutral, pro_benefit, pro_harm]
+  stopping_regimes: [fixed]
+  controllers: [agent, mmr]
+  replicates: 3
+  maximum_rounds: 5
+  minimum_rounds_before_stop: 2
+  relevance_weight: 1.0
+  direction_weight: 1.4
+  duplicate_logit_penalty: 1.0
+  selection_temperature: 0.8
+  minimum_selection_probability: 0.01
+  protected_uniform_mixture: 0.2
+  mmr_relevance_tradeoff: 0.7
+  stop_probability_if_recommend_stop: 0.75
+  stop_probability_if_recommend_continue: 0.10
+query_agent:
+  maximum_history_items: 4
+  maximum_document_characters: 900
+  max_input_tokens: 2048
+  max_new_tokens: 64
+estimators:
+  direction_tolerance: 0.05
+  candidate_cess_shrinkages: [0.0, 0.25, 0.5, 0.75, 1.0]
+  importance_weight_caps: [5.0, 10.0, 20.0]
+integrity:
+  method_must_be_frozen_before_run: true
+  query_prompt_sees_opened_documents_only: true
+  unopened_evidence_text_used_by_nuisance_model: false
+  no_parameter_selection_on_holdout: true
+  output_is_confirmatory: false

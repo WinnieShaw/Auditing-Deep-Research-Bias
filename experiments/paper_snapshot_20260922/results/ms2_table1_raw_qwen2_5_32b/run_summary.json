@@ -1,0 +1,26 @@
+{
+  "protocol_version": "ms2-sequential-global-shrinkage-confirmatory-v2",
+  "scope": "prospective_sequential_confirmatory",
+  "model_key": "qwen2_5_32b",
+  "tasks": 200,
+  "episodes": 600,
+  "trace_rows": 2400,
+  "tau_squared": 0.09468722550839213,
+  "second_moment_scale": 3.6585245092544603,
+  "query_model_path_read_only": "<MODEL_DIR>/Qwen2.5-32B-Instruct",
+  "environment_label_free": true,
+  "retrieval_used_true_outcomes": false,
+  "query_prompt_received_unopened_outcomes": false,
+  "shrinkage_frozen_before_trajectory_outcomes": true,
+  "input_hashes": {
+    "config": "13570e3507acb7de3c9d2e07da03721d30c157490d96c45fc94c32c774c6e1ac",
+    "environment_summary": "85c775f4a9b800a03f0514317eebbaa6c802b8723d85070e516b9ae906da6c53",
+    "environment_tasks": "4c55a85b160a844db21a37d6e25f490cb4d379f858f4f69d8d556d8aeb5ba1fa",
+    "environment_documents": "05218403f0da0a6a6d33d6a08c855191be1b0a6a6bc4b5143a980fcd2d889450",
+    "development_scores": "ebbd3978a74cef5de56231909a1bc0e676ffd74bd72a8aba6063f24cab036218",
+    "confirmatory_scores": "8a29b9110e64d98c0f3d25d78c51d5ed41ebcf0d465d693088ca240d402707af",
+    "model_config": "9c6772f138ef9e5b3d1c18f2c87e451bbc01f5f1a4eabb36f9bf4f53829b903e",
+    "traces": "7779c670bcb7cf4963506d098ed56f38466b2fab1801357cda877722777eb75b",
+    "cells": "3eece7877b109327bd55a6cf5d15b3fb58714e34a220e73ccb5a3d38c8ca2083"
+  }
+}
