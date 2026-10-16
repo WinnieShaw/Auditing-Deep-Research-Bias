@@ -7,6 +7,52 @@ from analyze_public_agent_light_v4 import long_estimates, aggregate_metrics
 
 ROOT = Path(__file__).resolve().parents[1]
 
+
+def verify_paper_figures():
+    figures = ROOT / 'figures'
+    required = [
+        figures / 'overview.pdf',
+        figures / 'overview_editable.pptx',
+        figures / 'fig_search_bias_and_stability.pdf',
+        figures / 'fig_search_bias_and_stability.svg',
+        figures / 'fig_budget_efficiency.pdf',
+        figures / 'fig_budget_efficiency.svg',
+    ]
+    for path in required:
+        assert path.is_file() and path.stat().st_size > 0, path
+
+    ranking = pd.read_csv(figures / 'source_data/fig_search_bias_and_stability.csv')
+    assert len(ranking) == 6
+    expected_ranking = {
+        ('a', 'controlled', 'uncorrected'): 0.7478,
+        ('a', 'controlled', 'causal_correction'): 0.0014,
+        ('b', 'Qwen2.5-32B', 'uncorrected'): 0.0415,
+        ('b', 'Qwen2.5-32B', 'CESS'): 0.0185,
+        ('b', 'OLMo3-7B', 'uncorrected'): 0.0391,
+        ('b', 'OLMo3-7B', 'CESS'): 0.0076,
+    }
+    actual_ranking = {
+        (row.panel, row.setting, row.method): float(row.conclusion_gap)
+        for row in ranking.itertuples(index=False)
+    }
+    assert actual_ranking == expected_ranking
+
+    budget = pd.read_csv(figures / 'source_data/fig_budget_efficiency.csv')
+    assert len(budget) == 16
+    assert set(budget['model']) == {'Qwen2.5-32B', 'OLMo3-7B'}
+    assert set(budget['search_rounds']) == {1, 2, 3, 4}
+    assert set(budget['method']) == {'uncorrected', 'Task-wise CESS'}
+    expected_gains = {
+        'Qwen2.5-32B': np.array([41.5, 23.4, 15.8, 9.1]),
+        'OLMo3-7B': np.array([40.7, 27.0, 18.1, 15.8]),
+    }
+    for model, expected in expected_gains.items():
+        rows = budget[budget.model == model]
+        opened = rows[rows.method == 'uncorrected'].sort_values('search_rounds').mae.to_numpy()
+        cess = rows[rows.method == 'Task-wise CESS'].sort_values('search_rounds').mae.to_numpy()
+        assert np.allclose(np.round(100 * (opened - cess) / opened, 1), expected)
+    return len(required), len(ranking) + len(budget)
+
 def main():
     base = ROOT / 'outputs/public_agent_light_v4'
     episodes = [json.loads(s) for s in (base/'test/episodes.jsonl').read_text().splitlines()]
@@ -32,8 +78,10 @@ def main():
         cells=pd.read_json(p,lines=True)
         assert len(cells)==2400 and cells.review_id.nunique()==200
         trajectories += len(cells)
+    figure_files, figure_source_rows = verify_paper_figures()
     result={'passed':True,'public_agent_episodes':len(episodes),'public_agent_metric_rows':len(actual),
-            'paired_intervention_trajectories':trajectories,'table_3_rounding_checks':12}
+            'paired_intervention_trajectories':trajectories,'table_3_rounding_checks':12,
+            'paper_figure_files':figure_files,'paper_figure_source_rows':figure_source_rows}
     out=ROOT/'build/paper_release_verification.json';out.parent.mkdir(exist_ok=True)
     out.write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result,indent=2))

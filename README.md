@@ -9,6 +9,8 @@ installation, experiment mappings and reproduction commands.
 [`experiments/`](experiments/) contains versioned exports; research sources are
 in [`scripts/`](scripts/) and [`research_scripts/`](research_scripts/).
 Only manuscript-related experiments and their necessary dependencies are included.
+The three paper figures, their editable/source artifacts, and the plotting code
+for the two result figures are documented in [`figures/`](figures/README.md).
 
 An agent chooses queries, opens documents, and decides when to continue. The
 observed documents can therefore be a selected sample of a larger candidate
@@ -42,6 +44,12 @@ Run the standard-library tests with:
 
 ```bash
 python3 -m unittest discover -s tests -p 'test_*.py'
+```
+
+Reproduce the two quantitative paper figures from their released CSV files with:
+
+```bash
+python3 scripts/plot_paper_figures.py
 ```
 
 ## Data and execution

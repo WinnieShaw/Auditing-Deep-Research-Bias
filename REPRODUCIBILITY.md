@@ -7,9 +7,11 @@ Auditing Evidence Selection Bias in Deep Research Agents**.
 
 | Paper item | Released artifacts |
 | --- | --- |
+| Figure 1: method overview | `figures/overview.pdf`; editable text and shapes in `figures/overview_editable.pptx` |
+| Figure 2: ranking sensitivity | `figures/fig_search_bias_and_stability.{pdf,svg}`; `figures/source_data/fig_search_bias_and_stability.csv`; `scripts/plot_paper_figures.py` |
 | Table 1: MS2, 200 questions, 1,200 trajectories | `experiments/paper_snapshot_20260922/results/ms2_table1_raw_*`; `tables/main_ms2_reproduction` under that same snapshot |
 | Tables 2 and 11: interpolated matched comparisons | `experiments/interpolated_matching_v6/*.csv`; `experiments/pareto_robustness_v6/real_trajectory_estimates.csv.gz`; `research_scripts/analyze_interpolated_matching_v6.py` |
-| Figure 3 and MS2 budget analysis | `experiments/paper_snapshot_20260922/figures/fig_budget_efficiency.pdf`; `reports/ms2_sequential_robustness_statistics.json`; `scripts/analyze_ms2_sequential_robustness.py`; `evidence_selection_benchmark/results/ms2_external/sequential_confirmatory_v1_*` |
+| Figure 3 and MS2 budget analysis | Canonical paper figure: `figures/fig_budget_efficiency.{pdf,svg}`; source values: `figures/source_data/fig_budget_efficiency.csv`; renderer: `scripts/plot_paper_figures.py`; analysis: `reports/ms2_sequential_robustness_statistics.json`, `scripts/analyze_ms2_sequential_robustness.py`, and `evidence_selection_benchmark/results/ms2_external/sequential_confirmatory_v1_*` |
 | Table 3, public-agent transfer and Appendix D | `outputs/public_agent_light_v4/test`, `analysis_final`, frozen configuration, development calibration and exact-input cache; `scripts/run_public_agent_light_v4.py`, `analyze_public_agent_light_v4.py` |
 | Table 4 and Appendix C: paired interventions | `outputs/interpretability_v1_true_agent_ms2/{qwen2_5_32b,olmo3_7b}` and selected `analysis_v4`/`analysis_v5` tables; `scripts/analyze_interpretability_v5.py`; `configs/interpretability_v1_true_agent_ms2.yaml` |
 | Tables 6–7: five-round PERSPECTRUM | `experiments/paper_snapshot_20260922/results/perspectrum_earlier_query`; `scripts/run_perspectrum_query_v1.py`; `configs/perspectrum_query_v1.yaml` |
@@ -34,8 +36,24 @@ python scripts/verify_paper_release.py
 
 The first verification recomputes task-macro metrics from frozen estimates and
 MS2 cells. The second recomputes public-agent metrics from 216 logged episodes,
-checks Table 3 at its reported precision, and checks the 4,800-trajectory count.
-These checks run locally without LLM calls.
+checks Table 3 at its reported precision, checks the 4,800-trajectory count,
+and validates the source values and required artifacts for Figures 1--3. These
+checks run locally without LLM calls.
+
+## Reproducing the paper figures
+
+Figure 1 is released as a publication-ready PDF and an editable PowerPoint file.
+Figures 2 and 3 can be regenerated from their compact source-data tables:
+
+```bash
+python scripts/plot_paper_figures.py
+```
+
+The command writes PDF, SVG and PNG versions to `figures/`. It uses Times New
+Roman when installed and otherwise falls back to an available Times-compatible
+serif font. The checked-in PDFs are the canonical versions used by the paper.
+The older copy under `experiments/paper_snapshot_20260922/figures/` is retained
+only as part of the immutable experiment snapshot.
 
 To reproduce the paper's matched comparisons, use a fresh output directory:
 
